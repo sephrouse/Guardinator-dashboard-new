@@ -1,0 +1,51 @@
+/* You can add global styles to this file, and also import other style files */
+
+// web font icon
+@import '../node_modules/font-awesome/css/font-awesome.css';
+@import '../node_modules/simple-line-icons/css/simple-line-icons.css';
+@import '../node_modules/weather-icons/css/weather-icons.css';
+
+@import "./styles/alain/app";
+@import "./styles/index";
+
+// Third Library
+@import '../node_modules/ng2-dnd/style.css';
+// Custome sweetAlert css
+@import './styles/sweet-alert';
+
+.app, .app-dashboard, .app-root {
+    display: block !important;
+    flex-direction: column;
+    min-height: 100vh; }
+
+.flex-row {
+    flex-direction: row !important; }
+.app.flex-row{
+    margin-top: 95px;
+}
+.align-items-center {
+    align-items: center !important; }
+
+.app-body {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    overflow-x: hidden; }
+.app-body .main {
+    flex: 1; }
+.app-body .sidebar {
+    flex: 0 0 220px;
+    order: -1; }
+.app-body .aside-menu {
+    flex: 0 0 250px; }
+
+.btn-fa{
+    background: transparent;
+    background-color: rgb(234, 76, 137);
+    color: #fff;
+}
+.label-after-span{
+    position: relative;
+    top: -0.1rem;
+    color: rgba(0, 0, 0, 0.85); 
+}

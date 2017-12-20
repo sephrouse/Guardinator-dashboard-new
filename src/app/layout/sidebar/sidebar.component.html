@@ -1,0 +1,20 @@
+<div class="aside-inner">
+    <div class="title">
+        奥迪上海体验中心
+    </div>
+    <nz-dropdown nzTrigger="click" class="user-block clearfix">
+        <div nz-dropdown class="user-block-dropdown">
+            <nz-avatar class="avatar" [nzIcon]="'user'" [nzSize]="'large'"></nz-avatar>
+            <div class="info">
+                <strong class="user-name">{{user.username}}</strong>
+            </div>
+        </div>
+        <ul nz-menu>
+            <li nz-menu-item [routerLink]="['/content/profile-settings/profile']">{{ 'profile' | translate }}</li>
+            <!-- <li nz-menu-item [routerLink]="['/content/profile-settings/password']">{{ 'editPassword' | translate }}</li> -->
+            <li nz-menu-item (click)="logout()">{{ 'logout' | translate }}</li>
+        </ul>
+    </nz-dropdown>
+    
+    <app-layout-nav class="d-block py-lg"></app-layout-nav>
+</div>

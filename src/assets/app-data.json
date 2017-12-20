@@ -1,0 +1,29 @@
+{
+    "app": {
+        "name": "Honeywell",
+        "description": "Ng-zorro admin panel front-end framework"
+    },
+    "user": {
+        "name": "Admin",
+        "avatar": "./assets/img/zorro.svg",
+        "email": "cipchk@qq.com"
+    },
+    "menu": [{
+        "text": "导航",
+        "translate": "导航",
+        "group": true,
+        "children": [{
+            "text": "检查数据分析",
+            "translate": "检查数据分析",
+            "link": "/content/data-analysis",
+            "icon": "fa fa-line-chart",
+            "acl": "role-a"
+        }, {
+            "text": "员工管理",
+            "translate": "员工管理",
+            "link": "/content/staff-manager",
+            "icon": "fa fa-gear",
+            "acl": "role-a"
+        }]
+    }]
+}

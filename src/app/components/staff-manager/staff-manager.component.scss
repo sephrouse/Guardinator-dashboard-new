@@ -6,3 +6,121 @@
 .card-txt{
   margin-bottom: 2.2rem;
 }
+
+.table01{
+    width:70%;
+    float: left;
+    height: 760px;
+    background: #fff;
+    border: 1px solid #d8d8d8;
+    padding:10px;
+    .t1title{
+        height:50px;
+        line-height: 50px;
+        position: relative;
+        .title{
+            font-size:16px;
+            //font-weight:600;
+            color: #000;
+        }
+        .addEm{
+            display: inline-block;
+            //width:80px;
+            height:30px;
+            line-height: 30px;
+            padding:0 10px;
+            border: 1px solid #d8d8d8;
+            text-align: center;
+            position: absolute;
+            right:10px;
+            top:10px;
+            cursor: pointer;
+        }
+    }
+    .t1{
+        height:680px;
+        //overflow: scroll;
+        border: 1px solid #d8d8d8;
+        tr:nth-child(odd){
+            background: #f7f7f7;
+        }
+        tr:nth-child(even){
+            background: #fff;
+        }
+        th{
+            text-align: center;
+            height: 20px;
+            background: #fff;
+        }
+        td{
+            text-align: center;
+            height: 20px;
+            i{
+                cursor: pointer;
+            }
+        }
+
+    }
+}
+
+.table02{
+    width:28%;
+    height: 760px;
+    padding:10px;
+    float: right;
+    position: relative;
+    background: #fff;
+    border: 1px solid #d8d8d8;
+    .t2title{
+        height:50px;
+        line-height: 50px;
+        position: relative;
+        .title{
+            font-size:16px;
+            //font-weight:600;
+            color: #000;
+        }
+        .t2Select{
+            position: absolute;
+            right:10px;
+            top:15px;
+        }
+    }
+    .t2{
+        height:600px;
+        //overflow: scroll;
+        th{
+            text-align: center;
+            background: #fff;
+        }
+        td{
+            text-align: center;
+
+        }
+    }
+
+    .PrintButton{
+        height:50px;
+        width:100%;
+        line-height: 50px;
+        margin-top: 15px;
+       text-align: center;
+        position: absolute;
+        bottom:20px;
+        left:0;
+        span{
+            display: inline-block;
+            width:100px;
+            height:30px;
+            line-height: 30px;
+            background: cornflowerblue;
+            text-align: center;
+            cursor: pointer;
+            color: #fff;
+            font-size:16px;
+            font-weight:600;
+        }
+
+    }
+}
+

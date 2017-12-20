@@ -87,7 +87,7 @@ export class DataAnalysisComponent implements OnInit {
 
   resizeChart() {
     if (this.echartsIntance) {
-      $(this.echartsIntance._dom).height($(window).height()*0.3);
+      // $(this.echartsIntance._dom).height($(window).height()*0.3);
       this.echartsIntance.resize();
     }
   }

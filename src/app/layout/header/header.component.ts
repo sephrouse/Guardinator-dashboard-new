@@ -12,7 +12,7 @@ import { TranslatorService } from '@core/translator/translator.service';
 
 @Component({
     selector: 'app-header',
-    templateUrl: './header.component.html'
+    templateUrl: './header.component.html',
 })
 export class HeaderComponent {
 

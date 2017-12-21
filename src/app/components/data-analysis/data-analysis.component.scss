@@ -53,3 +53,13 @@
     border-radius: 0 !important;
     float: right;
 }
+
+@media screen and(max-width: 1400px){
+    
+    .pie-fit-width {
+        width:590px;
+    }
+    .pie-card .ant-card-body{
+        overflow-x: scroll;
+    }
+}

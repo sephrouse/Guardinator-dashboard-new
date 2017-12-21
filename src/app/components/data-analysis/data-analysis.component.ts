@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataAnalysisService } from './data-analysis.service';
+import * as $ from 'jquery'
 
 @Component({
   selector: 'app-data-analysis',
@@ -16,7 +17,7 @@ export class DataAnalysisComponent implements OnInit {
   public pie3: any;
   public pie4: any;
   public pie5: any;
-  public echartsIntance: any;
+  // public echartsIntance: any;
   public selectOption1: any;
   public selectOption2: any;
   public selectOption3: any;
@@ -370,18 +371,24 @@ export class DataAnalysisComponent implements OnInit {
     ]
   }
 
-  onChartInit(ec) {
-    this.echartsIntance = ec;
-  }                               
-  
-  ngAfterViewInit(){
-    this.resizeChart();
-  }
-
-  resizeChart() {
-    if (this.echartsIntance) {
-      // $(this.echartsIntance._dom).height($(window).height()*0.3);
-      this.echartsIntance.resize();
-    }
+  //导出成excel
+  exportExcel(){
+    const ExportJsonExcel = require('js-export-excel')
+    let option={
+      fileName: '检测结果',
+      datas:[
+        {
+          sheetData:this.detectResults,
+          sheetName:'sheet',
+          sheetHeader:['车型','检测时间','车牌']
+        },
+        {
+          sheetData:[{one:'一行一列',two:'一行二列'},{one:'二行一列',two:'二行二列'}]
+        }
+      ]
+    };
+    
+    var toExcel = new ExportJsonExcel(option); //new
+    toExcel.saveExcel(); //保存
   }
 }

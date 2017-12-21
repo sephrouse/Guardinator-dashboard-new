@@ -13,9 +13,12 @@ export class StaffManagerComponent implements OnInit {
     public selectedYear:any;
     public years:any;
     public timesData:any;
+    public passwordStyle:boolean;
+
   constructor(private staffManagerService: StaffManagerService) {
         this.table01Data=[];
         this.timesData=[];
+        this.passwordStyle=false;
         this.years=[];
         this.selectedYear= {
             value:'2017',
@@ -46,13 +49,23 @@ export class StaffManagerComponent implements OnInit {
               value:'2017',
               label:'2017年',
           }, {
-              value:'2016',
-              label:'2016年',
-          },
+              value:'season',
+              label:'近一个季度',
+          }, {
+              value:'month',
+              label:'近一个月',
+          }
       ]
 
       console.log(this.table01Data)
 
+  }
+    changePassword(){
+      this.passwordStyle=!this.passwordStyle;
+    }
+
+  deleteAccount(){
+      console.log('删除此用户')
   }
 
 

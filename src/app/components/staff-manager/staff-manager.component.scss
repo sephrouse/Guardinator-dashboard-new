@@ -23,18 +23,10 @@
             //font-weight:600;
             color: #000;
         }
-        .addEm{
-            display: inline-block;
-            //width:80px;
-            height:30px;
-            line-height: 30px;
-            padding:0 10px;
-            border: 1px solid #d8d8d8;
-            text-align: center;
+        button{
             position: absolute;
             right:10px;
             top:10px;
-            cursor: pointer;
         }
     }
     .t1{
@@ -58,6 +50,9 @@
             i{
                 cursor: pointer;
             }
+        }
+        .fa{
+            cursor: pointer;
         }
 
     }
@@ -89,6 +84,7 @@
     .t2{
         height:600px;
         //overflow: scroll;
+        border: 1px solid #d8d8d8;
         th{
             text-align: center;
             background: #fff;
@@ -108,19 +104,10 @@
         position: absolute;
         bottom:20px;
         left:0;
-        span{
-            display: inline-block;
-            width:100px;
-            height:30px;
-            line-height: 30px;
-            background: cornflowerblue;
-            text-align: center;
-            cursor: pointer;
-            color: #fff;
-            font-size:16px;
-            font-weight:600;
+        button
+        {
+            width:80px;
         }
-
     }
 }
 

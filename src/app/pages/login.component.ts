@@ -12,14 +12,24 @@ import * as AppUtil from '../config/const';
 })
 export class LoginComponent {
   showModal: boolean;
+  public passwordShow: boolean;
+  public UserName:string;
+  public PassWord:string;
+
   loginRequest: LoginRequest;
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(private loginService: LoginService, private router: Router) {
+      this.passwordShow=false;
+  }
 
 
-  login(username, password){
+    changePasswordShow(){
+        this.passwordShow=!this.passwordShow;
+    }
+
+  login(){
     this.loginRequest = {
-      username: username,
-      userpasswd: password
+      username: this.UserName,
+      userpasswd: this.PassWord
     };
     if(this.loginRequest.username ===''||this.loginRequest.userpasswd ===''){
       alert('用户名和密码不能为空');

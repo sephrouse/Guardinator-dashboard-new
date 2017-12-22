@@ -1,0 +1,23 @@
+.head-txt{
+    color:#bfc0c2;
+    font-size: 22px;
+    position: relative;
+    left: -27px;
+    top: -5px;
+}
+.tool{
+    position: absolute;
+    right: 1rem;
+    font-size: 1.3rem;
+}
+.tool a{
+    color:rgba(0, 0, 0, 0.65)
+}
+.tool .anticon{
+    padding: 0 1rem;
+    cursor: pointer;
+    border-right: 1px solid;
+}
+.tool .anticon-question{
+   border-right: none;
+}

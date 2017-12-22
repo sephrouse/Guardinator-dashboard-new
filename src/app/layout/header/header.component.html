@@ -5,10 +5,22 @@
     
 </div>
 <div class="txt">
-    <span class="head-txt" style="color:#bfc0c2;font-size: 22px;position: relative;left: -27px;top: -5px;">| Guardinator</span>
+    <span class="head-txt">| Guardinator</span>
 </div>
-<div class="tool" style="position: absolute;right: 1rem;font-size: 1.4rem;">
-    <i class="anticon anticon-filter"></i> 
+<div class="tool">
+    <nz-dropdown>
+        <a class="ant-dropdown-link" nz-dropdown>
+        <i class="anticon anticon-filter"></i>
+        </a>
+        <ul nz-menu>
+            <li nz-menu-item>
+                <input type="checkbox">全选
+            </li>
+            <!-- <li nz-menu-item *ngFor="let item of carArray">
+                <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">2nd menu item</a>
+            </li> -->
+        </ul>
+    </nz-dropdown>
     <i class="anticon anticon-message"></i> 
     <i class="anticon anticon-question"></i> 
 </div>

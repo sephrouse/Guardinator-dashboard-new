@@ -73,9 +73,10 @@
           </nz-card>
         </div>
         <div nz-col [nzSpan]="12">
-          <nz-card>
+          <nz-card class="table-result-card">
             <ng-template #title>
                 <span class="chart-title">检测结果查询</span>
+                <span class="anticon anticon-export export-btn" (click)="exportExcel()"></span>
                 <div class="select-wrapper">
                   <nz-select style="width: 100px" [nzSize]="size" [nzPlaceHolder]="selectOption3[0].label">
                     <nz-option
@@ -93,36 +94,36 @@
                     <tr>
                       <th nz-th>
                         <span>车型</span>
-                        <customer-filter-dropdown (searchEmitter)="search($event,'type')"></customer-filter-dropdown>
+                        <i class="tool_bar_filter"></i>
+                        <!-- <customer-filter-dropdown (searchEmitter)="search($event,'type')"></customer-filter-dropdown> -->
                       </th>
                       <th nz-th>
                         <span>检测时间</span>
-                        <customer-filter-dropdown (searchEmitter)="search($event,'time')"></customer-filter-dropdown>
+                        <i class="tool_bar_filter"></i>
+                        <!-- <customer-filter-dropdown (searchEmitter)="search($event,'time')"></customer-filter-dropdown> -->
                       </th>
                       <th nz-th>
                         <span>车牌</span>
-                        <customer-filter-dropdown (searchEmitter)="search($event,'license')"></customer-filter-dropdown>
+                        <i class="tool_bar_filter"></i>
+                        <!-- <customer-filter-dropdown (searchEmitter)="search($event,'license')"></customer-filter-dropdown> -->
                       </th>
                       <th nz-th><span>检测报告</span></th>
                     </tr>
                   </thead>
-                  <tbody nz-tbody>
+                  <tbody nz-tbody >
                     <tr nz-tbody-tr *ngFor="let data of nzTable.data">
                       <td nz-td>{{data.type}}</td>
                       <td nz-td>{{data.time}}</td>
                       <td nz-td>
                         {{data.license}}
-                        <i class="anticon anticon-exclamation-circle-o"></i>
+                        <i class="detail-info"></i>
                       </td>
                       <td nz-td>
-                        <i class="anticon anticon-file-text"></i>
+                        <i class="result-detail"></i>
                       </td>
                     </tr>
                   </tbody>
                 </nz-table>
-                <button nz-button [nzType]="'primary'" class="export-btn" (click)="exportExcel()">
-                  <span>导出</span>
-                </button>
             </ng-template>
           </nz-card>
         </div>

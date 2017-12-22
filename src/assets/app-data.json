@@ -16,13 +16,13 @@
             "text": "检查数据分析",
             "translate": "检查数据分析",
             "link": "/content/data-analysis",
-            "icon": "fa fa-line-chart",
+            "icon": "navigation-data",
             "acl": "role-a"
         }, {
             "text": "员工管理",
             "translate": "员工管理",
             "link": "/content/staff-manager",
-            "icon": "fa fa-gear",
+            "icon": "navigation-setting",
             "acl": "role-a"
         }]
     }]

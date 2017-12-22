@@ -7,7 +7,9 @@
         <div nz-col>
             <nz-card>
               <ng-template #body>
-                  <div echarts [options]="bar1" style="width:100%;height:250px" class="bar1-wrapper"></div>
+                <div nz-row class="bar-fit-width">
+                    <div echarts [options]="bar1" style="width:100%;height:250px" class="bar1-wrapper"></div>
+                </div>
               </ng-template>
             </nz-card>
          

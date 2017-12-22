@@ -53,6 +53,7 @@ export class DataAnalysisComponent implements OnInit {
       },
       grid: {
         left: 30,
+        bottom:60,
       },
       legend: {
         data:['该车型检测次数','该车型数量'],
@@ -64,13 +65,28 @@ export class DataAnalysisComponent implements OnInit {
       xAxis : [
           {
             type : 'category',
-            data : ['Q5','A6L','A3两厢','A3三厢','A4L','XXX','XXX','XXX']
+            data : ['Q5','A6L','A3两厢','A3三厢','A4L','XXX','XXX','XXX'],
+            axisLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            axisLabel: {  
+              interval:0   
+            }  
           }
       ],
       yAxis : [
           {
             type : 'value',
             splitNumber: 2,
+            axisLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            }
           }
       ],
       series : [
@@ -121,6 +137,7 @@ export class DataAnalysisComponent implements OnInit {
         textStyle: {
           color: '#000',
           fontSize: 12,
+          fontWeight:500
         },
         left: '20%',
         top: '75%'
@@ -169,6 +186,7 @@ export class DataAnalysisComponent implements OnInit {
         textStyle: {
           color: '#000',
           fontSize: 12,
+          fontWeight:500
         },
         left: '20%',
         top: '75%'
@@ -217,6 +235,7 @@ export class DataAnalysisComponent implements OnInit {
         textStyle: {
           color: '#000',
           fontSize: 12,
+          fontWeight:500
         },
         left: '20%',
         top: '75%'
@@ -265,6 +284,7 @@ export class DataAnalysisComponent implements OnInit {
         textStyle: {
           color: '#000',
           fontSize: 12,
+          fontWeight:500
         },
         left: '20%',
         top: '75%'
@@ -313,6 +333,7 @@ export class DataAnalysisComponent implements OnInit {
         textStyle: {
           color: '#000',
           fontSize: 12,
+          fontWeight:500
         },
         left: '20%',
         top: '75%'

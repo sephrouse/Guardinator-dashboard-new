@@ -1,3 +1,71 @@
 .container{
-    padding-top: 8%;
+    padding-top: 5%;
+}
+.LoginWin{
+    color:#707070;
+    padding:0 50px;
+    img{
+        width:360px;
+        margin-bottom: 20px;
+    }
+    p{
+        margin-bottom: 12px;
+        font-size:16px;
+    }
+
+    .modalPassw{
+        width: 358px;
+        position: relative;
+        .eye{
+            display: inline-block;
+            width:30px;
+            height:15px;
+            position: absolute;
+            right: 30px;
+            top:18px;
+            z-index: 20;
+            cursor: pointer;
+        }
+        .openEye{
+            background: url("../../assets/img/Combined_Shape.png") no-repeat;
+            -webkit-background-size: contain;
+            background-size: contain;
+        }
+        .closeEye{
+            background: url("../../assets/img/Group_6.png") no-repeat;
+            -webkit-background-size: contain;
+            background-size: contain;
+        }
+    }
+    nz-input{
+        width: 358px;
+        margin-bottom: 20px;
+        input{
+            height:48px;
+            border-radius: 0;
+            font-size:16px;
+        }
+    }
+    button{
+        width: 358px;
+        height:48px;
+        border-radius: 0;
+        font-size:16px;
+        margin-top: 20px;
+    }
+    .forgetPw{
+        width: 358px;
+        height:80px;
+        line-height: 80px;
+        text-align: center;
+        a{
+            font-size:16px;
+            color:#1792e5;
+        }
+        a:hover,a:visited,a:active{
+            color:#1792e5;
+            text-decoration: none;
+        }
+
+    }
 }

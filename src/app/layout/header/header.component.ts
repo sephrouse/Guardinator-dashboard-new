@@ -36,6 +36,13 @@ export class HeaderComponent {
         { l: 'J', bg: '#373d41', nav: '#404040', con: '#f5f7fa' }
     ];
 
+    allChecked = false;
+    carCheckOptions = [
+        { label: '奥迪A5', value: '奥迪A5', checked: true },
+        { label: 'A4L', value: 'A4L', checked: false },
+        { label: 'A3两厢', value: 'A3两厢', checked: false },
+    ];
+
     @ViewChild('qIpt')
     private qIpt: any;
 
@@ -106,4 +113,21 @@ export class HeaderComponent {
         localStorage.removeItem('token');
         this.router.navigateByUrl('/login');
     }
+
+    updateAllChecked() {
+        if (this.allChecked) {
+          this.carCheckOptions.forEach(item => item.checked = true);
+        } else {
+          this.carCheckOptions.forEach(item => item.checked = false);
+        }
+      }
+    
+      updateSingleChecked() {
+        if (this.carCheckOptions.every(item => item.checked === false)) {
+          this.allChecked = false;
+        } else if (this.carCheckOptions.every(item => item.checked === true)) {
+          this.allChecked = true;
+        } else {
+        }
+      }
 }

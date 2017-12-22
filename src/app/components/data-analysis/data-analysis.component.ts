@@ -387,4 +387,5 @@ export class DataAnalysisComponent implements OnInit {
     toExcel.saveExcel();
    
   }
+  
 }

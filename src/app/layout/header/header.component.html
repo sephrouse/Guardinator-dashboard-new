@@ -1,27 +1,38 @@
 <div class="logo">
     <a>
-        <img class="expanded" src="./assets/img/logo.png" alt="{{settings.app.name}}" />
+        <img class="expanded" src="./assets/img/Logo-header.png" alt="{{settings.app.name}}" />
     </a>
     
 </div>
-<div class="txt">
-    <span class="head-txt">| Guardinator</span>
-</div>
 <div class="tool">
-    <nz-dropdown>
-        <a class="ant-dropdown-link" nz-dropdown>
-        <i class="anticon anticon-filter"></i>
-        </a>
-        <ul nz-menu>
-            <li nz-menu-item>
-                <input type="checkbox">全选
-            </li>
-            <!-- <li nz-menu-item *ngFor="let item of carArray">
-                <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">2nd menu item</a>
-            </li> -->
-        </ul>
-    </nz-dropdown>
-    <i class="anticon anticon-message"></i> 
-    <i class="anticon anticon-question"></i> 
+    <div class="tool-item">
+        <nz-dropdown [nzPlacement]="'bottomCenter'" [nzClickHide]="false">
+            <a class="ant-dropdown-link" nz-dropdown>
+                <i class="tool-bar-filter"></i>
+            </a>
+            <ul nz-menu style="width:150px">
+                <li nz-menu-item>
+                    选择车型
+                </li>
+                <li nz-menu-item>
+                    <label nz-checkbox [(ngModel)]="allChecked" (ngModelChange)="updateAllChecked()">
+                        <span>全选</span>
+                    </label>
+                </li>
+                <li nz-menu-item *ngFor="let item of carCheckOptions">
+                    <label nz-checkbox [(ngModel)]="item.checked" (ngModelChange)="updateSingleChecked()">
+                        <span>{{item.label}}</span>
+                    </label>
+                </li>
+            </ul>
+        </nz-dropdown>
+    </div>
+    <div class="tool-item">
+        <i class="tool-bar-info"></i> 
+    </div>
+    <div class="tool-item">
+        <i class="tool-bar-help"></i> 
+    </div>
+    
 </div>
 

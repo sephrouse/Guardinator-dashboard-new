@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { DataAnalysisService } from './data-analysis.service';
 import * as ExportJsonExcel from 'js-export-excel';
 
@@ -65,7 +65,7 @@ export class DataAnalysisComponent implements OnInit {
       xAxis : [
           {
             type : 'category',
-            data : ['Q5','A6L','A3两厢','A3三厢','A4L','XXX','XXX','XXX'],
+            data : ['Q5','A6L','A3两厢','A3三厢','A4L','XXX','XXX','XXX', 'Q5','A6L','A3两厢','A3三厢','A4L','XXX','XXX','XXX','Q5','A6L','A3两厢','A3三厢','A4L','XXX','XXX','XXX'],
             axisLine: {
               show: false
             },
@@ -89,13 +89,15 @@ export class DataAnalysisComponent implements OnInit {
             }
           }
       ],
+      
       series : [
           {
             name:'该车型检测次数',
             type:'bar',
-            data:[173, 125, 105, 95, 71, 60, 54, 20],
+            data:[173, 125, 105, 95, 71, 60, 54, 20,173, 125, 105, 95, 71, 60, 54, 20,173, 125, 105, 95, 71, 60, 54, 20],
             barWidth: 20,
             barGap: 0,
+            barCategoryGap: 40,
             itemStyle:{
               normal: {
                 color: '#1792e5',
@@ -112,9 +114,10 @@ export class DataAnalysisComponent implements OnInit {
           {
             name:'该车型数量',
             type:'bar',
-            data:[126, 89, 77, 42, 69, 61, 42, 14],
+            data:[126, 89, 77, 42, 69, 61, 42, 14,126, 89, 77, 42, 69, 61, 42, 14,126, 89, 77, 42, 69, 61, 42, 14],
             barWidth: 20,
             barGap: 0,
+            barCategoryGap: 40,
             itemStyle:{
               normal: {
                 color: '#f58d4d',
@@ -128,6 +131,22 @@ export class DataAnalysisComponent implements OnInit {
               }
             }
           }
+      ]
+    }
+    //判断是否开启dataZoom
+    if(true){
+      this.bar1.dataZoom =  [
+        {
+          type: 'slider',
+          show: true,
+          backgroundColor: '#fff',
+          fillerColor: '#ececec',
+          showDataShadow: false,
+          showDetail: false,
+          startValue: 0,
+          endValue: 10,
+          bottom: 0
+        }
       ]
     }
     //饼图1

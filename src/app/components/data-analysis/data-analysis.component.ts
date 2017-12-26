@@ -28,14 +28,12 @@ export class DataAnalysisComponent implements OnInit {
   ngOnInit() {
     //订阅车型
     this.emitService.eventEmit.subscribe( (res:any) => {
-      this.selectOption1 = res.filter(value => {
-        return value.checked == true;
-      });
-      if(this.selectOption1 && this.selectOption1.length > 0){
-        this.curCar = this.selectOption1[0].value;
-      }
+      this.setSelectOption1(res);
     })
 
+    let localSelectOption1  = JSON.parse(localStorage.getItem('carCheckOptions'));
+    this.setSelectOption1(localSelectOption1);
+    
     this.selectOption2 = [
       { value: '2017', label: '2017年' },
       { value: '2016', label: '2016年' },
@@ -415,6 +413,14 @@ export class DataAnalysisComponent implements OnInit {
       }
     ]
 
+  }
+  setSelectOption1(res){
+    this.selectOption1 = res.filter(value => {
+      return value.checked == true;
+    });
+    if(this.selectOption1 && this.selectOption1.length > 0){
+      this.curCar = this.selectOption1[0].value;
+    }
   }
 
   //导出成excel

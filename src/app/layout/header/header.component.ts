@@ -74,6 +74,7 @@ export class HeaderComponent implements OnInit{
                 })
             });
             this.emitService.eventEmit.emit(this.carCheckOptions);
+            localStorage.setItem('carCheckOptions', JSON.stringify(this.carCheckOptions));
         })
 
     }
@@ -141,15 +142,18 @@ export class HeaderComponent implements OnInit{
           this.carCheckOptions.forEach(item => item.checked = false);
         }
         this.emitService.eventEmit.emit(this.carCheckOptions);
+        localStorage.setItem('carCheckOptions', JSON.stringify(this.carCheckOptions));
     }
     
     updateSingleChecked() {
-        this.emitService.eventEmit.emit(this.carCheckOptions);
         if (this.carCheckOptions.every(item => item.checked === false)) {
             this.allChecked = false;
         } else if (this.carCheckOptions.every(item => item.checked === true)) {
             this.allChecked = true;
         } else {
         };
+        this.emitService.eventEmit.emit(this.carCheckOptions);
+        localStorage.setItem('carCheckOptions', JSON.stringify(this.carCheckOptions));
+        
     }
 }

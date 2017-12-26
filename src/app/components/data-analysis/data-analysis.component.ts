@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { DataAnalysisService } from './data-analysis.service';
 import * as ExportJsonExcel from 'js-export-excel';
+import { EmitService } from 'app/shared/service/EmitService';
 
 @Component({
   selector: 'app-data-analysis',
@@ -22,13 +23,19 @@ export class DataAnalysisComponent implements OnInit {
   public selectOption3: any;
   public detectResults: any;
 
-  constructor(private dataAnalysisService: DataAnalysisService) { }
+  constructor(private dataAnalysisService: DataAnalysisService,  private emitService: EmitService) { }
 
   ngOnInit() {
-    this.selectOption1 = [
-      { value: '奥迪Q5', label: '奥迪Q5' },
-      { value: 'A6L', label: 'A6L' },
-    ];
+    //订阅车型
+    this.emitService.eventEmit.subscribe( (res:any) => {
+      this.selectOption1 = res.filter(value => {
+        return value.checked == true;
+      });
+      if(this.selectOption1 && this.selectOption1.length > 0){
+        this.curCar = this.selectOption1[0].value;
+      }
+    })
+
     this.selectOption2 = [
       { value: '2017', label: '2017年' },
       { value: '2016', label: '2016年' },
@@ -37,8 +44,7 @@ export class DataAnalysisComponent implements OnInit {
       { value: '2017', label: '2017年' },
       { value: '2016', label: '2016年' },
     ]; 
-
-    this.curCar = this.selectOption1[0].value;
+   
     //柱形图
     this.bar1 = {
       title : {
@@ -408,6 +414,7 @@ export class DataAnalysisComponent implements OnInit {
         license: '沪X XXX'
       }
     ]
+
   }
 
   //导出成excel

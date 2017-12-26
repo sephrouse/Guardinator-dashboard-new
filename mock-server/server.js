@@ -34,6 +34,67 @@ app.post('/dashboard/usercentre/logout',function(req, res){
   res.json(result);
 })
 
+//获取检测车辆所有车型
+app.get('/car/cartype', function(req, res){
+  var result = {
+    "Errcode" : 100,
+    "List": [
+      {
+        "CarBrand": "奥迪",
+        "CarType": "Q5"
+      },
+      {
+        "CarBrand": "奥迪",
+        "CarType": "A4L"
+      },
+      {
+        "CarBrand": "奥迪",
+        "CarType": "A3两厢"
+      }
+    ]
+  }
+  res.json(result);
+})
+
+//获取车型评分分析
+app.get('/car/score-analysis', function(req, res){
+  var result = {
+    "Errcode" : 100,
+    "Data": {
+      "Engine": {
+        "100-90": 45,
+        "89-60":30,
+        "59-20":20,
+        "19-0":5,
+      },
+      "Battery":{
+        "100-70": 45,
+        "69-50":30,
+        "49-20":20,
+        "19-0":5,
+      },
+      "Coolant":{
+        "100-70": 45,
+        "69-50":30,
+        "49-20":20,
+        "19-0":5,
+      },
+      "Oil":{
+        "100-70": 45,
+        "69-50":30,
+        "49-20":20,
+        "19-0":5,
+      },
+      "Carbon":{
+        "100-90": 45,
+        "89-60":30,
+        "59-20":20,
+        "19-0":5,
+      },
+    }
+  }
+  res.json(result);
+})
 
 app.use(function (req, res, next) {
   var err = new Error('Not Found');

@@ -25,6 +25,7 @@ import { CanActivateGuard } from './shared/routerControl/can-activate-guard';
 import { AppRoute } from './app.router';
 //Strategy
 import { SelectivePreloadingStrategy } from './shared/routerControl/selective-preloading-strategy';
+import { EmitService } from 'app/shared/service/EmitService';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -63,6 +64,7 @@ export function StartupServiceFactory(startupService: StartupService): Function 
         { provide: LOCALE_ID, useValue: 'zh-Hans' },
         { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
         StartupService,
+        EmitService,
         {
             provide: APP_INITIALIZER,
             useFactory: StartupServiceFactory,

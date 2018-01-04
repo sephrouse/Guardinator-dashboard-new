@@ -21,7 +21,7 @@
               <ng-template #title>
                 <span class="chart-title">检测评分分析</span>
                 <div class="select-wrapper">
-                  <nz-select style="width: 100px" [nzSize]="size" [nzPlaceHolder]="selectOption1[0].label" [(ngModel)]="curCar">
+                  <nz-select style="width: 100px" [nzSize]="size" [(ngModel)]="curCar">
                     <nz-option
                       *ngFor="let option of selectOption1"
                       [nzLabel]="option.label"

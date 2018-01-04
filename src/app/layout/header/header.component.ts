@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import * as screenfull from 'screenfull';
 import { NzModalService, NzMessageService } from 'ng-zorro-antd';
 import { LocalStorageService } from 'angular-web-storage';
@@ -10,13 +10,16 @@ import { MenuService } from '@core/services/menu.service';
 import { ThemeType } from '@core/services/themes.service';
 import { TranslatorService } from '@core/translator/translator.service';
 
+import { DataAnalysisService } from '../../components/data-analysis/data-analysis.service';
+import { EmitService } from 'app/shared/service/EmitService';
+
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss']
-    
+    styleUrls: ['./header.component.scss'],
+    providers: [ DataAnalysisService]
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
 
     q: string;
     focus = false;
@@ -36,12 +39,8 @@ export class HeaderComponent {
         { l: 'J', bg: '#373d41', nav: '#404040', con: '#f5f7fa' }
     ];
 
-    allChecked = false;
-    carCheckOptions = [
-        { label: '奥迪A5', value: '奥迪A5', checked: true },
-        { label: 'A4L', value: 'A4L', checked: false },
-        { label: 'A3两厢', value: 'A3两厢', checked: false },
-    ];
+    allChecked = true;
+    carCheckOptions = [];
 
     @ViewChild('qIpt')
     private qIpt: any;
@@ -54,8 +53,30 @@ export class HeaderComponent {
         private confirmServ: NzModalService,
         private storageServ: LocalStorageService,
         private messageServ: NzMessageService,
-        private router: Router
+        private router: Router,
+        private dataAnalysisService: DataAnalysisService,
+        private emitService: EmitService
     ) {
+    }
+
+    ngOnInit(){
+        //获取所有车型
+        this.dataAnalysisService.getAllCartype().subscribe(res => {
+            let carList = res.List;
+            carList.forEach(element => {
+                let label = element.CarBrand + element.CarType;
+                this.carCheckOptions.push({
+                    'carBrand' : element.CarBrand,
+                    'carType' : element.CarType,
+                    'label': label,
+                    'value': label,
+                    'checked': true
+                })
+            });
+            this.emitService.eventEmit.emit(this.carCheckOptions);
+            localStorage.setItem('carCheckOptions', JSON.stringify(this.carCheckOptions));
+        })
+
     }
 
     toggleCollapsedSideabar() {
@@ -120,14 +141,19 @@ export class HeaderComponent {
         } else {
           this.carCheckOptions.forEach(item => item.checked = false);
         }
-      }
+        this.emitService.eventEmit.emit(this.carCheckOptions);
+        localStorage.setItem('carCheckOptions', JSON.stringify(this.carCheckOptions));
+    }
     
-      updateSingleChecked() {
+    updateSingleChecked() {
         if (this.carCheckOptions.every(item => item.checked === false)) {
-          this.allChecked = false;
+            this.allChecked = false;
         } else if (this.carCheckOptions.every(item => item.checked === true)) {
-          this.allChecked = true;
+            this.allChecked = true;
         } else {
-        }
-      }
+        };
+        this.emitService.eventEmit.emit(this.carCheckOptions);
+        localStorage.setItem('carCheckOptions', JSON.stringify(this.carCheckOptions));
+        
+    }
 }

@@ -24,7 +24,6 @@
                        <th nz-th ><span>密码&nbsp;&nbsp;
                            <span (click)="changePassword()"  class="eye"  [ngClass]="{closeEye:passwordStyle,openEye:!passwordStyle}"></span>
                        </span></th>
-                       <th nz-th ><span>检测次数</span></th>
                        <th nz-th ><span>激活时间</span></th>
                        <th nz-th ><span>禁用账户</span></th>
                        <th nz-th ><span>删除子账户</span></th>
@@ -32,13 +31,13 @@
                    </thead>
                    <tbody nz-tbody>
                    <tr nz-tbody-tr *ngFor="let data of nzTable1.data">
-                       <td nz-td>{{data.name}}</td>
-                       <td nz-td>{{data.username}}</td>
+                       <td nz-td>{{data.NickName}}</td>
+                       <td nz-td>{{data.UserName}}</td>
                        <td nz-td>{{passwordStyle?data.password:'******'}}</td>
-                       <td nz-td>{{data.times}}</td>
-                       <td nz-td>{{data.lastLoginTime}}</td>
+                       <td nz-td>{{data.ActivateTime}}</td>
                        <td nz-td>
-                        <span  [ngClass]="{forbiddenIcon:data.disable,forbiddenIcon01:!data.disable}" class="forbiddenIcon"></span>
+                        <span  [ngClass]="{forbiddenIcon:data.Locked,forbiddenIcon01:!data.Locked}" class="forbiddenIcon">&nbsp;</span>
+                           {{data.Locked?'已禁用':'已启用'}}
                        </td>
                        <td nz-td>
                            <span class="deleteIcon" (click)="deleteAccount(data)"></span>
@@ -71,8 +70,8 @@
                         <td nz-td style="width: 50px">
                             {{i+1}}
                         </td>
-                        <td nz-td style="width:60px">{{data.name}}</td>
-                        <td nz-td > <nz-progress [ngModel]="data.times" [nzStrokeWidth]="5"[nzShowInfo]="false"></nz-progress></td>
+                        <td nz-td style="width:60px">{{data.NickName}}</td>
+                        <td nz-td > <nz-progress [ngModel]="data.DetectTimes" [nzStrokeWidth]="5"[nzShowInfo]="false"></nz-progress></td>
                         <td nz-td style="width: 50px">{{data.times}}</td>
                     </tr>
                     </tbody>

@@ -22,15 +22,28 @@ export class StaffManagerComponent implements OnInit {
 
   constructor(private staffManagerService: StaffManagerService,
               private confirmServ: NzModalService) {
-        this.table01Data=[];
+        this.table01Data=[{
+            "UserName": '',
+            "NickName": '',
+            "ObdMacAddr":'',
+            "HomeAddr":'',
+            "CompanyAddr":'',
+            "SchoolAddr":'',
+            "ActivateTime":'',
+            "ActivateFlag":false,
+            "DetectTimes" :0,
+            "GoldCoins" :'',
+            "Locked" :false,
+            "Role" :0
+        }];
         this.timesData=[];
         this.passwordStyle=false;
         this.isVisible=false;
         this.passwordShow=false;
         this.years=[];
-          this.AddUserName='';
-          this.AddNickName='';
-          this.AddPassWord='';
+        this.AddUserName='';
+        this.AddNickName='';
+        this.AddPassWord='';
 
 
         this.selectedYear= {
@@ -42,19 +55,25 @@ export class StaffManagerComponent implements OnInit {
   ngOnInit() {
       for (let i = 0; i < 30; i++) {
           this.table01Data.push({
-              name   : `小赵`,
-              username    : '18133446655',
-              password: `77ddgdkll`,
-              times:67,
-              lastLoginTime:'2017-09-01 10:30am',
-              disable:false
+              "UserName": '18133446655',
+              "NickName": 'test',
+              "ObdMacAddr":'dizhidizh地址',
+              "HomeAddr":'dizhidizh地址',
+              "CompanyAddr":'dizhidizh地址',
+              "SchoolAddr":'dizhidizh地址',
+              "ActivateTime":'2017年09月01号 10:30am',
+              "ActivateFlag":true,
+              "DetectTimes" :45,
+              "GoldCoins" :'',
+              "Locked" :true,
+              "Role" :0
           });
       }
 
       for (let i = 0; i < 20; i++) {
           this.timesData.push({
-              name   : `小赵`,
-              times    : 56+i,
+              NickName   : `小赵`,
+              DetectTimes    : 56+i,
           });
       }
 
@@ -88,7 +107,7 @@ export class StaffManagerComponent implements OnInit {
   deleteAccount(data){
       this.confirmServ.confirm({
           title  : '您是否确认要删除这个用户吗？',
-          content: '<b>用户名：'+data.name+'</b>',
+          content: '<b>用户名：'+data.NickName+'</b>',
           onOk() {
               console.log('删除用户');
           },

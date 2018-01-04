@@ -47,7 +47,7 @@
     .t1{
         height:789px;
         //overflow: scroll;
-        border: 1px solid #d8d8d8;
+        //border: 1px solid #d8d8d8;
         tr:nth-child(odd){
             background: #f7f7f7;
         }
@@ -76,6 +76,7 @@
         }
         td{
             text-align: center;
+            border: none !important;
             height: 20px;
             i{
                 cursor: pointer;
@@ -87,7 +88,7 @@
                 cursor: pointer;
             }
             .forbiddenIcon{
-                background: url("../../../assets/img/Screen_Setting_Enable.png") no-repeat;
+                background: url("../../../assets/img/Screen_Setting_Enable.png") no-repeat ;
                 -webkit-background-size: contain;
                 background-size: contain;
             }
@@ -153,10 +154,10 @@
     .t2{
         height:789px;
         //overflow: scroll;
-        border: 1px solid #d8d8d8;
+        //border: 1px solid #d8d8d8;
         tr:nth-child(odd){
             background: #fff;
-            height: 53px;
+            //height: 53px;
         }
         tr:nth-child(even){
             background: #fff;
@@ -261,4 +262,7 @@
 .ant-table-pagination{
     width:100%;
     text-align: center;
+}
+.ant-table-wrapper{
+    border: 1px solid #d8d8d8 !important;
 }

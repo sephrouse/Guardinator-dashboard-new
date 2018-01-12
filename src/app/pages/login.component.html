@@ -1,58 +1,25 @@
 
-<div class="app flex-row align-items-center">
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="LoginWin" >
-            <img src="./assets/img/logo.png" alt="">
-            <p>姓名</p>
-            <nz-input [(ngModel)]="UserName" [nzPlaceHolder]="'请输入姓名'"  ></nz-input>
-            <p>密码</p>
-            <div class="modalPassw">
+    <div class="LoginWin" >
+        <img src="./assets/img/Honeywell_Primary_Logo_RGB.png" alt="">
+        <p class="logoName">Guardinator</p>
+        <p>姓名</p>
+        <nz-input [(ngModel)]="UserName" [nzPlaceHolder]="'请输入姓名'"  ></nz-input>
+        <p>密码</p>
+        <div class="modalPassw">
                             <span class="eye closeEye"
                                   [ngClass]="{closeEye:!passwordShow,openEye:passwordShow}"
                                   (click)="changePasswordShow()"></span>
-                <nz-input *ngIf="passwordShow" [(ngModel)]="PassWord" [nzPlaceHolder]="'请输入密码'"  ></nz-input>
-                <nz-input *ngIf="!passwordShow" [(ngModel)]="PassWord" [nzType]="'password'" [nzPlaceHolder]="'请输入密码'" ></nz-input>
-            </div>
-            <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="login()">
-                登录
-            </button>
-            <p class="forgetPw">
-                <a href="#">忘记密码？</a>
-            </p>
-
+            <nz-input *ngIf="passwordShow" [(ngModel)]="PassWord" [nzPlaceHolder]="'请输入密码'"  ></nz-input>
+            <nz-input *ngIf="!passwordShow" [(ngModel)]="PassWord" [nzType]="'password'" [nzPlaceHolder]="'请输入密码'" ></nz-input>
         </div>
-
-
-
-
-
-
-    <!--    <div class="card p-2">
-        &lt;!&ndash;  <div class="card-block">
-            <p class="text-muted">请输入用户名密码</p>
-            <div class="input-group mb-1">
-                                <span class="input-group-addon"><i class="icon-user"></i>
-                                </span>
-              <input type="text" class="form-control" placeholder="Username" #username>
-            </div>
-            <div class="input-group mb-2">
-                                <span class="input-group-addon"><i class="icon-lock"></i>
-                                </span>
-              <input type="password" class="form-control" placeholder="Password" #password>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                  &lt;!&ndash; <button type="button" class="btn btn-danger px-2">登陆</button> &ndash;&gt;
-                  <button type="button" class="btn btn-danger px-2" (click)="login(username.value,password.value)">登录</button>
-                  &lt;!&ndash;<a href="index.html" class="btn btn-danger px-2">登陆</a>&ndash;&gt;
-              </div>
-          </div>
-          </div>&ndash;&gt;
-        </div>-->
+        <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="login()">
+            登录
+        </button>
+        <p class="forgetPw">
+            <a href="#">忘记密码？</a>
+        </p>
 
     </div>
-  </div>
 </div>
-</div>
+

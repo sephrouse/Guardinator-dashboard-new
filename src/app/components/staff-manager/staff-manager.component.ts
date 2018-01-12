@@ -20,6 +20,9 @@ export class StaffManagerComponent implements OnInit {
     public AddNickName:string;
     public AddPassWord:string;
 
+    public role:number;
+
+
   constructor(private staffManagerService: StaffManagerService,
               private confirmServ: NzModalService) {
         this.table01Data=[{
@@ -44,7 +47,7 @@ export class StaffManagerComponent implements OnInit {
         this.AddUserName='';
         this.AddNickName='';
         this.AddPassWord='';
-
+        this.role=1;
 
         this.selectedYear= {
             value:'2017',

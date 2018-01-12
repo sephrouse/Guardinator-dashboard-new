@@ -8,7 +8,7 @@
 }
 
 .table01{
-    width:70%;
+    width:100%;
     float: left;
     height: 930px;
     background: #fff;
@@ -28,16 +28,27 @@
             color: #000;
         }
         button{
-            height: 36px;
-            line-height: 36px;
+            width:180px;
+            height: 40px;
+            line-height: 18px;
             position: absolute;
             right:10px;
             top:10px;
-            padding-left:40px;
-            background: url("../../../assets/img/Screen_Setting_Add_person.png") no-repeat 10px center;
-            -webkit-background-size: 22px 16px;
-            background-size:  22px 16px;
+            color: #fff;
+            font-size:17px;
+            //padding-left:40px;
+            //background: url("../../../assets/img/Screen_Setting_Add_person.png") no-repeat 10px center;
+            //-webkit-background-size: 22px 16px;
+            //background-size:  22px 16px;
             border-radius: 0;
+            span{
+                display: inline-block;
+                height:30px;
+                line-height: 30px;
+                padding-right: 20px;
+                border-right: 1px solid #d8d8d8;
+                font-size:17px;
+            }
         }
     }
     .ant-table-pagination{
@@ -88,12 +99,16 @@
                 cursor: pointer;
             }
             .forbiddenIcon{
-                background: url("../../../assets/img/Screen_Setting_Enable.png") no-repeat ;
+                width:40px;
+                height:28px;
+                background: url("../../../assets/img/Switch _On.png") no-repeat ;
                 -webkit-background-size: contain;
                 background-size: contain;
             }
             .forbiddenIcon01{
-                background: url("../../../assets/img/Screen_Setting_Disable.png") no-repeat;
+                width:40px;
+                height:28px;
+                background: url("../../../assets/img/Switch _Off.png") no-repeat;
                 -webkit-background-size: contain;
                 background-size: contain;
             }
@@ -190,7 +205,7 @@
 }
 
 .ant-modal-content{
-    margin-top: 40%;
+    margin-top: 30%;
     width:500px;
 }
 .ant-modal-header{

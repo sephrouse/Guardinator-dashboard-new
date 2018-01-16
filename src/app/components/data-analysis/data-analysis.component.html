@@ -4,64 +4,29 @@
     <!-- Main content -->
     <main class="main">
       <div nz-row [nzGutter]="16">
-        <div nz-col class="bar-card" #carBar>
-            <nz-card>
-              <ng-template #body>
-                <div nz-row class="bar-fit-width">
-                    <div echarts [options]="bar1" style="width:100%;height:250px" class="bar1-wrapper"></div>
-                </div>
-              </ng-template>
-            </nz-card>
-         
-          </div>
-      </div>
-      <div nz-row [nzGutter]="16">
-        <div nz-col [nzSpan]="12" class="pie-card">
+        <div nz-col [nzSpan]="24" class="pie-card">
           <nz-card>
               <ng-template #title>
                 <span class="chart-title">检测评分分析</span>
-                <div class="select-wrapper">
-                  <nz-select style="width: 100px" [nzSize]="size" [(ngModel)]="curCar">
-                    <nz-option
-                      *ngFor="let option of selectOption1"
-                      [nzLabel]="option.label"
-                      [nzValue]="option.value"
-                      [nzDisabled]="option.disabled">
-                    </nz-option>
-                  </nz-select>
-                  <nz-select style="width: 100px" [nzSize]="size" [nzPlaceHolder]="selectOption2[0].label">
-                    <nz-option
-                      *ngFor="let option of selectOption2"
-                      [nzLabel]="option.label"
-                      [nzValue]="option.value"
-                      [nzDisabled]="option.disabled">
-                    </nz-option>
-                  </nz-select>
-                </div>
               </ng-template>
               <ng-template #body>
-                  <div nz-row>
-                    <span>{{curCar}}</span>
-                  </div>
                   <div nz-row class="pie-fit-width">
-                    <div nz-col [nzSpan]="8">
+                    <div nz-col [nzSpan]="4">
                       <div echarts [options]="pie1" style="width:100%;height:200px"></div>
                     </div>
-                    <div nz-col [nzSpan]="8">
+                    <div nz-col [nzSpan]="4">
                         <div echarts [options]="pie2" style="width:100%;height:200px"></div>
                     </div>
-                    <div nz-col [nzSpan]="8">
+                    <div nz-col [nzSpan]="4">
                         <div echarts [options]="pie3" style="width:100%;height:200px"></div>
                     </div>
-                  </div>
-                  <div nz-row class="pie-fit-width">
-                    <div nz-col [nzSpan]="8">
-                        <div echarts [options]="pie4" style="width:100%;height:200px"></div>
+                    <div nz-col [nzSpan]="4">
+                      <div echarts [options]="pie4" style="width:100%;height:200px"></div>
                     </div>
-                    <div nz-col [nzSpan]="8">
+                    <div nz-col [nzSpan]="4">
                         <div echarts [options]="pie5" style="width:100%;height:200px"></div>
                     </div>
-                    <div nz-col [nzSpan]="8">
+                    <div nz-col [nzSpan]="4">
                       <div class="pie-des">
                         <div class="txt">占比=</div>
                         <div class="txt">
@@ -74,54 +39,105 @@
               </ng-template>
           </nz-card>
         </div>
-        <div nz-col [nzSpan]="12">
+      </div>
+      <div nz-row [nzGutter]="16">
+        <div nz-col [nzSpan]="24">
           <nz-card class="table-result-card">
             <ng-template #title>
                 <span class="chart-title">检测结果查询</span>
-                <span class="anticon anticon-export export-btn" (click)="exportExcel()"></span>
-                <div class="select-wrapper">
-                  <nz-select style="width: 100px" [nzSize]="size" [nzPlaceHolder]="selectOption3[0].label">
-                    <nz-option
-                      *ngFor="let option of selectOption3"
-                      [nzLabel]="option.label"
-                      [nzValue]="option.value"
-                      [nzDisabled]="option.disabled">
-                    </nz-option>
-                  </nz-select>
-                </div>
+                <!-- <span class="anticon anticon-export export-btn" (click)="exportExcel()"></span> -->
             </ng-template>
             <ng-template #body>
-                <nz-table #nzTable [nzDataSource]="detectResults" [nzIsPagination]="false">
+                <nz-table #nzTable [nzDataSource]="detectResults">
                   <thead nz-thead>
                     <tr>
                       <th nz-th>
-                        <span>车型</span>
-                        <i class="tool_bar_filter"></i>
-                        <!-- <customer-filter-dropdown (searchEmitter)="search($event,'type')"></customer-filter-dropdown> -->
-                      </th>
-                      <th nz-th>
-                        <span>检测时间</span>
-                        <i class="tool_bar_filter"></i>
-                        <!-- <customer-filter-dropdown (searchEmitter)="search($event,'time')"></customer-filter-dropdown> -->
+                        <span>车主</span>
                       </th>
                       <th nz-th>
                         <span>车牌</span>
-                        <i class="tool_bar_filter"></i>
-                        <!-- <customer-filter-dropdown (searchEmitter)="search($event,'license')"></customer-filter-dropdown> -->
                       </th>
-                      <th nz-th><span>检测报告</span></th>
+                      <th nz-th>
+                        <span>车辆识别代号</span>
+                      </th>
+                      <th nz-th>
+                        <span>最近一次检测</span>
+                      </th>
+                      <th nz-th>
+                        <span>行驶公里数(km)</span>
+                      </th>
+                      <th nz-th>
+                        <span>上次到店时间</span>
+                      </th>
+                      <th nz-th>
+                        <span>生产年份</span>
+                      </th>
+                      <th nz-th>
+                        <span>故障码</span>
+                      </th>
+                      <th nz-th>
+                        <span>发动机</span>
+                      </th>
+                      <th nz-th>
+                        <span>电瓶</span>
+                      </th>
+                      <th nz-th>
+                        <span>冷却系统</span>
+                      </th>
+                      <th nz-th>
+                        <span>积碳</span>
+                      </th>
+                      <th nz-th>
+                        <span>机油</span>
+                      </th>
                     </tr>
                   </thead>
                   <tbody nz-tbody >
                     <tr nz-tbody-tr *ngFor="let data of nzTable.data">
-                      <td nz-td>{{data.type}}</td>
-                      <td nz-td>{{data.time}}</td>
                       <td nz-td>
-                        {{data.license}}
-                        <i class="detail-info"></i>
+                          <personal-popover></personal-popover>
                       </td>
                       <td nz-td>
-                        <i class="result-detail"></i>
+                        {{data.license}}
+                      </td>
+                      <td nz-td>
+                        {{data.code}}
+                      </td>
+                      <td nz-td>
+                        <i class="report-icon" ></i>
+                      </td>
+                      <td nz-td>
+                        <span *ngIf="!data.editKMFlag">
+                          {{data.km}}
+                          <i class="pencil-icon" (click)="showKMInput($event,data)"></i>
+                        </span>
+                        <nz-input id="km-{{data.id}}" style="width:100px" [nzType]="'number'" [(ngModel)]="data.km" *ngIf="data.editKMFlag" (nzBlur)="editKM(data)"></nz-input>
+                      </td>
+                      <td nz-td>
+                        {{data.time}}
+                        <!-- <i class="canlendar-icon" ></i> -->
+                        <calendar-popover></calendar-popover>
+                      </td>
+                      <td nz-td>
+                        {{data.birth}}
+                      </td>
+                      <td nz-td>
+                        {{data.fault}}
+                      </td>
+                      <td nz-td style="color:#1792e5">
+                        {{data.Engine}}
+                      </td>
+                      <td nz-td style="color:#1792e5">
+                        {{data.Battery}}
+                      </td>
+                      <td nz-td style="color:#f1594f">
+                        {{data.Coolant}}
+                      </td>
+                      <td nz-td style="color:#ffc627">
+                        {{data.Carbon}}
+                      </td>
+                      <td nz-td style="color:#f58d4d">
+                        {{data.Oil}}
                       </td>
                     </tr>
                   </tbody>

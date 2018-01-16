@@ -14,6 +14,8 @@ import { UserModalComponent } from './modal/userModal/user-modal.component';
 import { RoleModalComponent } from './modal/roleModal/role-modal.component';
 import { CustomerFilterDropdownComponent } from './component/customer-filter-dropdown/customer-filter-dropdown.component';
 import { CustomerProgressComponent } from './component/customer-progress/customer-progress.component';
+import { PersonalPopoverComponent } from './component/personnal-popover/personal-popover.component';
+import { CalendarPopoverComponent } from './component/calendar-popover/calendar-popover.component';
 //directives
 import { SparklineDirective } from './directives/sparkline/sparkline.directive';
 import { FileValidator } from '@shared/fileValidator.directive';
@@ -30,7 +32,8 @@ const DIRECTIVES = [SparklineDirective,FileValidator,FileValueAccessor];
 const PIPES = [ KeysPipe, YNPipe];
 const HELPERS = [ ModalHelper ];
 const COMPONENTS = [EnvModalComponent,ConfigModalComponent,ScaleClusterModalComponent,
-                    UserModalComponent,RoleModalComponent,CustomerFilterDropdownComponent,CustomerProgressComponent];
+                    UserModalComponent,RoleModalComponent,CustomerFilterDropdownComponent,
+                    CustomerProgressComponent,PersonalPopoverComponent,CalendarPopoverComponent];
 
 @NgModule({
     imports: [

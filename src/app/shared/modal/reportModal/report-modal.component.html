@@ -1,0 +1,72 @@
+<!-- 报告Modal -->
+<ng-template #modalContent>
+    <nz-tabset>
+        <nz-tab>
+            <ng-template #nzTabHeading>
+                检测详情
+            </ng-template>
+            <div class="content-box">
+                <div class="content-title">一级标题</div>
+                <div class="content-txt">正文缺省...正文缺省...正文缺省...正文缺省...正文缺省...</div>
+                <div class="content-title">一级标题</div>
+                <div class="content-txt">正文缺省...正文缺省...正文缺省...正文缺省...正文缺省...</div>
+            </div>
+        </nz-tab>
+        <nz-tab>
+            <ng-template #nzTabHeading>
+                数据流
+            </ng-template>
+            <div class="content-box">
+                <div class="content-title">一级标题</div>
+                <div class="content-txt">正文缺省...正文缺省...正文缺省...正文缺省...正文缺省...</div>
+                <div class="content-title">一级标题</div>
+                <div class="content-txt">正文缺省...正文缺省...正文缺省...正文缺省...正文缺省...</div>
+            </div>
+        </nz-tab>
+        <nz-tab>
+            <ng-template #nzTabHeading>
+                检测评分
+            </ng-template>
+            <div class="content-box">
+                <div class="car-img"></div>
+                <div class="progress-wrapper">
+                    <div class="engine {{progress.engine | progresscolor}}">
+                        <nz-progress [nzWidth]="80" [ngModel]="progress.engine" [nzType]="'circle'" [nzFormat]="engineformat"></nz-progress>
+                    </div>
+                    <div class="battery {{progress.battery | progresscolor}}">
+                        <nz-progress [nzWidth]="80" [ngModel]="progress.battery" [nzType]="'circle'" [nzFormat]="batteryformat"></nz-progress>
+                    </div>
+                    <div class="cool {{progress.cool | progresscolor}}">
+                        <nz-progress [nzWidth]="80" [ngModel]="progress.cool" [nzType]="'circle'" [nzFormat]="coolformat"></nz-progress>
+                    </div>
+                    <div class="carbon {{progress.carbon | progresscolor}}">
+                        <nz-progress [nzWidth]="80" [ngModel]="progress.carbon" [nzType]="'circle'" [nzFormat]="carbonformat"></nz-progress>
+                    </div>
+                    <div class="oil {{progress.oil | progresscolor}}">
+                         <nz-progress [nzWidth]="80" [ngModel]="progress.oil" [nzType]="'circle'" [nzFormat]="oilformat"></nz-progress>
+                    </div>
+                </div>
+            </div>
+        </nz-tab>
+        <nz-tab>
+            <ng-template #nzTabHeading>
+                故障码
+            </ng-template>
+            <div class="content-box">
+                <div class="content-title">当前故障码</div>
+                <div class="content-txt">正文缺省...正文缺省...正文缺省...正文缺省...正文缺省...</div>
+                <div class="content-title">未解决故障码</div>
+                <div class="content-txt">正文缺省...正文缺省...正文缺省...正文缺省...正文缺省...</div>
+                <div class="content-title">永久故障码</div>
+                <div class="content-txt">正文缺省...正文缺省...正文缺省...正文缺省...正文缺省...</div>
+            </div>
+        </nz-tab>
+    </nz-tabset>
+    <div class="car-info">
+        <span class="car">奥迪Q5_沪Axxxx</span>
+        <span class="time">检测时间：2017.8.30</span>
+    </div>
+</ng-template>
+
+<!--component -->
+<i class="report-icon" (click)="showModal(modalContent,false)"></i>

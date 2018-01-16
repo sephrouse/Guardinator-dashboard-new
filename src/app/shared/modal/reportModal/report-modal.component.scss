@@ -1,0 +1,107 @@
+.report-icon{
+    background: url('/assets/img/Result_Detail.png');
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+    width:1rem;
+    height:1.2rem;
+    display: inline-block;
+    cursor: pointer;
+}
+.report-modal{
+    .ant-modal{
+        width: 900px !important;
+        .ant-modal-content{
+            height:600px;
+            margin: 0 !important;
+            width: 900px !important;
+        }
+    }
+}
+.car-info{
+    position: absolute;
+    top: 4.4rem;
+    right: 1rem;
+    .car{
+        margin-right: 1rem;
+    }
+}
+.content-box{
+    position: relative;
+    top: -16px;
+    border: 1px solid #c0c0c0;
+    border-top: none;
+    height: 480px;
+    .content-title{
+        background: #f7f7f7;
+        height: 48px;
+        line-height: 48px;
+        padding-left: 20px;
+    }
+    .content-txt{
+        height: 48px;
+        line-height: 48px;
+        padding-left: 50px;
+    }
+    .car-img{
+        background: url(/assets/img/car-img.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        width: 10rem;
+        height: 13.1rem;
+        margin: 0 auto;
+        position: relative;
+        top: 7rem;
+    }
+    .progress-wrapper{
+        .engine{
+            position: absolute;
+            top: 88px;
+            left: 279px;
+        }
+        .battery{
+            position: absolute;
+            top: 240px;
+            left: 278px;
+        }
+        .cool{
+            position: absolute;
+            top: 88px;
+            left: 513px;
+        }
+        .carbon{
+            position: absolute;
+            top: 187px;
+            left: 513px;
+        }
+        .oil{
+            position: absolute;
+            top: 290px;
+            left: 513px;
+        }
+        .blue{
+            .rc-progress-circle-path{
+                stroke: #8bc9f2;
+            }
+        }
+        .yellow{
+            .rc-progress-circle-path{
+                stroke: #ffd153
+            }
+        }
+        .orange{
+            .rc-progress-circle-path{
+                stroke: #f58d4d
+            }
+        }
+        .red{
+            .rc-progress-circle-path{
+                stroke: #f1594f;
+            }
+        }
+    }
+}
+.ant-progress-text{
+    font-size:14px !important;
+    color:rgba(0,0,0,0.65) !important;
+    white-space: pre;
+}

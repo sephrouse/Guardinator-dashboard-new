@@ -100,12 +100,35 @@
         overflow-x: scroll;
     }
 }
-// .bar-card {
-//     .ant-card {
-//         overflow-x: scroll;
-//         width:calc(100vw - 220px)
-//     }
-//     .ant-card-body{
-//         min-width: 3000px;
-//     }
-// }
+.ant-pagination {
+    float: none !important;
+    margin-left: 50% !important;
+    text-align: center;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    position: absolute;
+}
+.pencil-icon{
+    background: url('/assets/img/Edit.png');
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+    width:1rem;
+    height:1rem;
+    display: inline-block;
+    margin-left: 1rem;
+    position: relative;
+    top: .2rem;
+    cursor: pointer;
+}
+.calendar-icon{
+    background: url('/assets/img/Date.png');
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+    width:1rem;
+    height:1rem;
+    display: inline-block;
+    margin-left: 1rem;
+    position: relative;
+    top: .2rem;
+    cursor: pointer;
+}

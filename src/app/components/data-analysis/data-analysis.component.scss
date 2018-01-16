@@ -10,17 +10,22 @@
     right: 20px;
     top: 10px;
 }
+.pie-card{
+    .ant-card-body{
+        padding: 0;
+    }
+}
 .pie-des{
     width: 100%;
     text-align: center;
     vertical-align: middle;
-    margin-top: 3rem;
+    margin-top: 8rem;
     display: flex;
     justify-content: center;
     align-items: center;
     .txt{
-        margin-right: 1rem;
-        font-size: 15px;
+        margin-right: .5rem;
+        font-size: 14px;
         .top{
             border-bottom: 1px solid #979797;
         }
@@ -90,15 +95,6 @@
     top: .1rem;
     left: 1rem;
     cursor: pointer;
-}
-@media screen and(max-width: 1400px){
-    
-    .pie-fit-width {
-        width:590px;
-    }
-    .pie-card .ant-card-body{
-        overflow-x: scroll;
-    }
 }
 .ant-pagination {
     float: none !important;

@@ -114,9 +114,14 @@
                         <nz-input id="km-{{data.id}}" style="width:100px" [nzType]="'number'" [(ngModel)]="data.km" *ngIf="data.editKMFlag" (nzBlur)="editKM(data)"></nz-input>
                       </td>
                       <td nz-td>
-                        {{data.time}}
-                        <!-- <i class="canlendar-icon" ></i> -->
-                        <calendar-popover></calendar-popover>
+                        <div>
+                            <nz-datepicker style="width:10px;visibility:hidden;" [(ngModel)]="data.time" [nzPlaceHolder]="'选择日期'" [nzFormat]="'YYYY.MM.DD'"></nz-datepicker>
+                            {{data.time|selfdate:'YYYY.MM.DD'}}
+                            <i class="calendar-icon" (click)="openPicker()"></i>
+                        </div>
+                        <!-- <div *ngIf="data.editTimeFlag">
+                            <nz-datepicker style="width:110px" [(ngModel)]="data.time" [nzPlaceHolder]="'选择日期'" [nzVisibleChange]="closeCalendar(data)"></nz-datepicker>
+                        </div> -->
                       </td>
                       <td nz-td>
                         {{data.birth}}

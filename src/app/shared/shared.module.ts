@@ -15,7 +15,6 @@ import { RoleModalComponent } from './modal/roleModal/role-modal.component';
 import { CustomerFilterDropdownComponent } from './component/customer-filter-dropdown/customer-filter-dropdown.component';
 import { CustomerProgressComponent } from './component/customer-progress/customer-progress.component';
 import { PersonalPopoverComponent } from './component/personnal-popover/personal-popover.component';
-import { CalendarPopoverComponent } from './component/calendar-popover/calendar-popover.component';
 //directives
 import { SparklineDirective } from './directives/sparkline/sparkline.directive';
 import { FileValidator } from '@shared/fileValidator.directive';
@@ -24,16 +23,17 @@ import { FileValueAccessor } from '@shared/fileValueAccessor.directive';
 import { KeysPipe } from './pipes/keys.pipe';
 import { YNPipe } from './pipes/yn.pipe';
 import { ModalHelper } from './helper/modal.helper';
+import { SelfdatePipe } from './pipes/selfdate.pipe';
 //interceptor
 import { provideInterceptorService  } from 'ng2-interceptors'; 
 import { HttpInterceptor } from './routerControl/http-interceptor';
 
 const DIRECTIVES = [SparklineDirective,FileValidator,FileValueAccessor];
-const PIPES = [ KeysPipe, YNPipe];
+const PIPES = [ KeysPipe, YNPipe, SelfdatePipe];
 const HELPERS = [ ModalHelper ];
 const COMPONENTS = [EnvModalComponent,ConfigModalComponent,ScaleClusterModalComponent,
                     UserModalComponent,RoleModalComponent,CustomerFilterDropdownComponent,
-                    CustomerProgressComponent,PersonalPopoverComponent,CalendarPopoverComponent];
+                    CustomerProgressComponent,PersonalPopoverComponent];
 
 @NgModule({
     imports: [

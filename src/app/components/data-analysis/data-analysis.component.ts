@@ -1,7 +1,8 @@
-import { Component, OnInit, ElementRef} from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild} from '@angular/core';
 import { DataAnalysisService } from './data-analysis.service';
 import * as ExportJsonExcel from 'js-export-excel';
 import { EmitService } from 'app/shared/service/EmitService';
+import { NzDatePickerComponent } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-data-analysis',
@@ -18,6 +19,8 @@ export class DataAnalysisComponent implements OnInit {
   public pie4: any;
   public pie5: any;
   public detectResults: any;
+
+  @ViewChild(NzDatePickerComponent) datePicker: NzDatePickerComponent;
 
   constructor(private dataAnalysisService: DataAnalysisService,  private emitService: EmitService, private el: ElementRef) { }
 
@@ -399,5 +402,9 @@ export class DataAnalysisComponent implements OnInit {
   editKM(data){
     data.editKMFlag = false;
     console.log(data.km);
+  }
+
+  openPicker() {
+    this.datePicker._openCalendar();
   }
 }

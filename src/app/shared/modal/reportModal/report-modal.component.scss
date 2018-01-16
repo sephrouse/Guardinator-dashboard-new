@@ -7,10 +7,14 @@
     display: inline-block;
     cursor: pointer;
 }
-.ant-modal{
-    width: 900px !important;
-    .ant-modal-content{
-        height:600px;
+.report-modal{
+    .ant-modal{
+        width: 900px !important;
+        .ant-modal-content{
+            height:600px;
+            margin: 0 !important;
+            width: 900px !important;
+        }
     }
 }
 .car-info{

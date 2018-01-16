@@ -37,6 +37,7 @@ export class ReportModalComponent implements OnInit {
       title: '检测结果详情',
       content: contentTpl,
       footer:footerTpl,
+      wrapClassName:'report-modal'
     });
   }
   

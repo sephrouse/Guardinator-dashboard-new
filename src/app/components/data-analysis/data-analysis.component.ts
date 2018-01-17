@@ -19,12 +19,24 @@ export class DataAnalysisComponent implements OnInit {
   public pie4: any;
   public pie5: any;
   public detectResults: any;
+  public curCar: any;
+  public curStaff: any;
 
   @ViewChild(NzDatePickerComponent) datePicker: NzDatePickerComponent;
 
   constructor(private dataAnalysisService: DataAnalysisService,  private emitService: EmitService, private el: ElementRef) { }
 
   ngOnInit() {
+    this.curCar = localStorage.getItem('dashboard-curCar');
+    this.curStaff = localStorage.getItem('dashboard-curStaff');
+    this.emitService.eventEmit.subscribe((res:any)=> {
+      if(res.type == 'car'){
+        this.curCar = res.data;
+        
+      }else if(res.type == 'staff'){
+        this.curStaff = res.data;
+      }
+    })
     //获取检测评分分析
     this.dataAnalysisService.getScoreAnalysis({}).subscribe((res: any) => {
       let data = res.Data;
@@ -124,7 +136,7 @@ export class DataAnalysisComponent implements OnInit {
           fontSize: 12,
           fontWeight:500
         },
-        left: '20%',
+        left: '22%',
         top: '75%'
       },
       tooltip : {
@@ -133,7 +145,9 @@ export class DataAnalysisComponent implements OnInit {
       },
       legend: {
           orient: 'vertical',
-          left: '60%',
+          itemWidth: 18,
+          itemGap: 16,
+          left: '55%',
           top: '15%',
           data: ['100-90','89-60','59-20','19-0']
       },
@@ -177,7 +191,7 @@ export class DataAnalysisComponent implements OnInit {
           fontSize: 12,
           fontWeight:500
         },
-        left: '20%',
+        left: '23%',
         top: '75%'
       },
       tooltip : {
@@ -186,7 +200,9 @@ export class DataAnalysisComponent implements OnInit {
       },
       legend: {
           orient: 'vertical',
-          left: '60%',
+          itemWidth: 18,
+          itemGap: 16,
+          left: '55%',
           top: '15%',
           data: ['100-70','69-50','49-20','19-0']
       },
@@ -239,7 +255,9 @@ export class DataAnalysisComponent implements OnInit {
       },
       legend: {
           orient: 'vertical',
-          left: '60%',
+          itemWidth: 18,
+          itemGap: 16,
+          left: '55%',
           top: '15%',
           data: ['100-90','89-60','59-20','19-0'],
       },
@@ -283,7 +301,7 @@ export class DataAnalysisComponent implements OnInit {
           fontSize: 12,
           fontWeight:500
         },
-        left: '20%',
+        left: '23%',
         top: '75%'
       },
       tooltip : {
@@ -292,7 +310,9 @@ export class DataAnalysisComponent implements OnInit {
       },
       legend: {
           orient: 'vertical',
-          left: '60%',
+          itemWidth: 18,
+          itemGap: 16,
+          left: '55%',
           top: '15%',
           data: ['100-90','89-60','59-20','19-0']
       },
@@ -336,7 +356,7 @@ export class DataAnalysisComponent implements OnInit {
           fontSize: 12,
           fontWeight:500
         },
-        left: '20%',
+        left: '23%',
         top: '75%'
       },
       tooltip : {
@@ -345,7 +365,9 @@ export class DataAnalysisComponent implements OnInit {
       },
       legend: {
           orient: 'vertical',
-          left: '60%',
+          itemWidth: 18,
+          itemGap: 16,
+          left: '55%',
           top: '15%',
           data: ['100-70','69-50','49-20','19-0']
       },

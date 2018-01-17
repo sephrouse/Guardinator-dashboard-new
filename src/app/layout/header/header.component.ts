@@ -2,7 +2,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import * as screenfull from 'screenfull';
 import { NzModalService, NzMessageService } from 'ng-zorro-antd';
 import { LocalStorageService } from 'angular-web-storage';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 import { SettingsService, SidebarThemeType } from '@core/services/settings.service';
 import { ThemesService } from '@core/services/themes.service';
@@ -39,8 +39,17 @@ export class HeaderComponent implements OnInit{
         { l: 'J', bg: '#373d41', nav: '#404040', con: '#f5f7fa' }
     ];
 
-    allChecked = true;
-    carCheckOptions = [];
+    carSelects: any = [
+        {value:'奥迪A4L',label:'奥迪A4L'},
+        {value:'奥迪Q5',label:'奥迪Q5'},
+    ];
+    staffSelects: any = [
+        {value:'赵SA',label:'赵SA'},
+        {value:'李SA',label:'李SA'},
+    ];
+    curCar: any;
+    curStaff: any;
+    showToolFlag: any = true;
 
     @ViewChild('qIpt')
     private qIpt: any;
@@ -60,23 +69,11 @@ export class HeaderComponent implements OnInit{
     }
 
     ngOnInit(){
-        //获取所有车型
-        this.dataAnalysisService.getAllCartype().subscribe(res => {
-            let carList = res.List;
-            carList.forEach(element => {
-                let label = element.CarBrand + element.CarType;
-                this.carCheckOptions.push({
-                    'carBrand' : element.CarBrand,
-                    'carType' : element.CarType,
-                    'label': label,
-                    'value': label,
-                    'checked': true
-                })
-            });
-            this.emitService.eventEmit.emit(this.carCheckOptions);
-            localStorage.setItem('carCheckOptions', JSON.stringify(this.carCheckOptions));
-        })
-
+        this.curCar = this.carSelects[0].label;
+        this.curStaff = this.staffSelects[0].label;
+        localStorage.setItem('dashboard-curCar',this.curCar);
+        localStorage.setItem('dashboard-curStaff',this.curStaff);
+        this.showTool();
     }
 
     toggleCollapsedSideabar() {
@@ -135,25 +132,28 @@ export class HeaderComponent implements OnInit{
         this.router.navigateByUrl('/login');
     }
 
-    updateAllChecked() {
-        if (this.allChecked) {
-          this.carCheckOptions.forEach(item => item.checked = true);
-        } else {
-          this.carCheckOptions.forEach(item => item.checked = false);
+    showTool(){
+        //判断当前页路由
+        if(this.router.url == '/content/data-analysis'){
+            this.showToolFlag = true;
+        }else if(this.router.url == "/content/staff-manager"){
+            this.showToolFlag = false;
         }
-        this.emitService.eventEmit.emit(this.carCheckOptions);
-        localStorage.setItem('carCheckOptions', JSON.stringify(this.carCheckOptions));
+        this.router.events
+        .filter(event => event instanceof NavigationEnd)
+        .subscribe((res:any) => {
+            if(res.url == '/content/data-analysis'){
+                this.showToolFlag = true;
+            }else if(res.url == "/content/staff-manager"){
+                this.showToolFlag = false;
+            }
+        })
     }
-    
-    updateSingleChecked() {
-        if (this.carCheckOptions.every(item => item.checked === false)) {
-            this.allChecked = false;
-        } else if (this.carCheckOptions.every(item => item.checked === true)) {
-            this.allChecked = true;
-        } else {
-        };
-        this.emitService.eventEmit.emit(this.carCheckOptions);
-        localStorage.setItem('carCheckOptions', JSON.stringify(this.carCheckOptions));
-        
+
+    staffChangeEmitter(value){
+        this.emitService.eventEmit.emit({type:'staff',data:value});
+    }
+    carChangeEmitter(value){
+        this.emitService.eventEmit.emit({type:'car',data:value});
     }
 }

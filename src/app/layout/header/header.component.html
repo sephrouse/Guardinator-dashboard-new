@@ -4,12 +4,12 @@
     </a>
     
 </div>
-<div class="tool">
-    <nz-select style="width:120px" [nzPlaceHolder]="'选择员工'">
-        <nz-option [nzLabel]="'赵SA'"[nzValue]="'赵SA'"></nz-option>
+<div class="tool" *ngIf="showToolFlag">
+    <nz-select style="width:120px" [nzPlaceHolder]="'选择员工'" [(ngModel)]="curStaff" (ngModelChange)="staffChangeEmitter(curStaff)">
+        <nz-option *ngFor="let option of staffSelects" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
     </nz-select>
-    <nz-select style="width:120px" [nzPlaceHolder]="'选择车型'">
-        <nz-option [nzLabel]="'奥迪Q5'"[nzValue]="'奥迪Q5'"></nz-option>
+    <nz-select style="width:120px" [nzPlaceHolder]="'选择车型'" [(ngModel)]="curCar" (ngModelChange)="carChangeEmitter(curCar)">
+        <nz-option *ngFor="let option of carSelects" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
     </nz-select>
 </div>
 

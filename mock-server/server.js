@@ -35,29 +35,52 @@ app.post('/dashboard/usercentre/logout',function(req, res){
 })
 
 //获取检测车辆所有车型
-app.get('/car/cartype', function(req, res){
+app.get('/car/type', function(req, res){
   var result = {
     "Errcode" : 100,
     "List": [
       {
-        "CarBrand": "奥迪",
-        "CarType": "Q5"
+        "CarBrand": "audi",
+        "CarType": "a3"
       },
       {
-        "CarBrand": "奥迪",
-        "CarType": "A4L"
-      },
-      {
-        "CarBrand": "奥迪",
-        "CarType": "A3两厢"
+          "CarBrand": "福特",
+          "CarType": "嘉年华-两厢"
       }
     ]
   }
   res.json(result);
 })
 
+//获取SA列表
+app.get('/employee/sa/list', function(req, res){
+  var result =  {
+    "Errcode": 100,
+    "List": [
+      {
+        "EmployeeName": "ZhangLin",
+        "NickName": "ZL",
+        "Phone": "15850676563",
+        "Role": 0,
+        "Lock": false,
+        "Superior": "boss"
+      },
+      {
+        "EmployeeName": "ZhangLin2",
+        "NickName": "ZL",
+        "Phone": "15850676563",
+        "Role": 0,
+        "Lock": false,
+        "Superior": "boss"
+      }
+    ],
+    "Total": 2
+  } 
+  res.json(result);
+})
+
 //获取车型评分分析
-app.get('/car/score-analysis', function(req, res){
+app.get('/score/ratio', function(req, res){
   var result = {
     "Errcode" : 100,
     "Data": {

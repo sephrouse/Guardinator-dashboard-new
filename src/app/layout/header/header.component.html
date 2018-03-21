@@ -8,7 +8,7 @@
     <nz-select style="width:120px" [nzPlaceHolder]="'选择员工'" [(ngModel)]="curStaff" (ngModelChange)="staffChangeEmitter(curStaff)">
         <nz-option *ngFor="let option of staffSelects" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
     </nz-select>
-    <nz-select style="width:120px" [nzPlaceHolder]="'选择车型'" [(ngModel)]="curCar" (ngModelChange)="carChangeEmitter(curCar)">
+    <nz-select style="width:120px" [nzPlaceHolder]="'选择车型'" [(ngModel)]="curCar.label" (ngModelChange)="carChangeEmitter(curCar)">
         <nz-option *ngFor="let option of carSelects" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
     </nz-select>
 </div>

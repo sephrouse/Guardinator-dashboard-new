@@ -27,12 +27,11 @@ export class DataAnalysisComponent implements OnInit {
   constructor(private dataAnalysisService: DataAnalysisService,  private emitService: EmitService, private el: ElementRef) { }
 
   ngOnInit() {
-    this.curCar = localStorage.getItem('dashboard-curCar');
-    this.curStaff = localStorage.getItem('dashboard-curStaff');
+    this.curCar = JSON.parse(localStorage.getItem('dashboard-curCar'));
+    this.curStaff = JSON.parse(localStorage.getItem('dashboard-curStaff'));
     this.emitService.eventEmit.subscribe((res:any)=> {
       if(res.type == 'car'){
         this.curCar = res.data;
-        
       }else if(res.type == 'staff'){
         this.curStaff = res.data;
       }

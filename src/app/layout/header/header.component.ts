@@ -39,15 +39,9 @@ export class HeaderComponent implements OnInit{
         { l: 'J', bg: '#373d41', nav: '#404040', con: '#f5f7fa' }
     ];
 
-    carSelects: any = [
-        {value:'奥迪A4L',label:'奥迪A4L'},
-        {value:'奥迪Q5',label:'奥迪Q5'},
-    ];
-    staffSelects: any = [
-        {value:'赵SA',label:'赵SA'},
-        {value:'李SA',label:'李SA'},
-    ];
-    curCar: any;
+    carSelects: any = [];
+    staffSelects: any = [];
+    curCar: any = {};
     curStaff: any;
     showToolFlag: any = true;
 
@@ -69,10 +63,38 @@ export class HeaderComponent implements OnInit{
     }
 
     ngOnInit(){
-        this.curCar = this.carSelects[0].label;
-        this.curStaff = this.staffSelects[0].label;
-        localStorage.setItem('dashboard-curCar',this.curCar);
-        localStorage.setItem('dashboard-curStaff',this.curStaff);
+        //获取SA列表
+        this.dataAnalysisService.getSalist({itemNumber:-1}).subscribe(res => {
+            let list = res.List;
+            if(list){
+                list.forEach(element => {
+                    this.staffSelects.push({value: element.EmployeeName,label: element.EmployeeName})
+                });
+                this.curStaff = this.staffSelects[0].label;
+                localStorage.setItem('dashboard-curStaff',JSON.stringify(this.curStaff));
+            }
+        }, error => {
+            console.log('获取SA列表失败！')
+        })
+        //获取汽车类型列表
+        this.dataAnalysisService.getAllCartype().subscribe(res => {
+            let list = res.List;
+            if(list){
+                list.forEach(element => {
+                    this.carSelects.push({
+                        value:element.CarBrand + element.CarType, 
+                        label: element.CarBrand + element.CarType,
+                        carType: element.CarType,
+                        carBrand: element.carBrand,
+                    })
+                });
+                this.curCar = this.carSelects[0];
+                localStorage.setItem('dashboard-curCar',JSON.stringify(this.curCar));
+            }
+        }, error => {
+            console.log('获取汽车类型列表失败！')
+        })
+        
         this.showTool();
     }
 

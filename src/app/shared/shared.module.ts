@@ -24,7 +24,8 @@ import { SelfdatePipe } from './pipes/selfdate.pipe';
 import { ProgresscolorPipe } from './pipes/progresscolor.pipe';
 
 //interceptor
-import { provideInterceptorService  } from 'ng2-interceptors'; 
+import { InterceptorService } from 'ng2-interceptors';
+import { XHRBackend, RequestOptions } from '@angular/http';
 import { HttpInterceptor } from './routerControl/http-interceptor';
 
 const DIRECTIVES = [SparklineDirective,FileValidator,FileValueAccessor];
@@ -33,6 +34,11 @@ const HELPERS = [ ModalHelper ];
 const COMPONENTS = [ReportModalComponent,CustomerFilterDropdownComponent,
                     CustomerProgressComponent,PersonalPopoverComponent];
 
+export function interceptorFactory(xhrBackend: XHRBackend, requestOptions: RequestOptions, serverURLInterceptor:HttpInterceptor){ // Add it here
+    let service = new InterceptorService(xhrBackend, requestOptions);
+    service.addInterceptor(serverURLInterceptor); // Add it here
+    return service;
+}
 @NgModule({
     imports: [
         CommonModule,
@@ -47,9 +53,11 @@ const COMPONENTS = [ReportModalComponent,CustomerFilterDropdownComponent,
         ...HELPERS,
         //配置http拦截器
         HttpInterceptor,
-        provideInterceptorService([
-            HttpInterceptor
-        ])  
+        {
+           provide: InterceptorService,
+           useFactory: interceptorFactory,
+           deps: [XHRBackend, RequestOptions, HttpInterceptor]
+        }, 
     ],
     exports: [
         CommonModule,

@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { LoginService } from './service/login.service';
 import { LoginRequest  } from './model/login.request';
 import { Router } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd';
 import * as AppUtil from '../config/const';
 
 
 @Component({
   templateUrl: 'login.component.html',
   styleUrls:['login.component.scss'],
-  providers: [LoginService]
+  providers: [LoginService],
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent {
   showModal: boolean;
@@ -17,7 +19,7 @@ export class LoginComponent {
   public PassWord:string;
 
   loginRequest: LoginRequest;
-  constructor(private loginService: LoginService, private router: Router) {
+  constructor(private loginService: LoginService, private router: Router, private msg: NzMessageService) {
       this.passwordShow=false;
   }
 
@@ -31,8 +33,9 @@ export class LoginComponent {
       username: this.UserName,
       userpasswd: this.PassWord
     };
-    if(this.loginRequest.username ===''||this.loginRequest.userpasswd ===''){
-      alert('用户名和密码不能为空');
+
+    if(this.loginRequest.username == null ||this.loginRequest.userpasswd == null){
+      this.msg.error('用户名和密码不能为空');
       return;
     }
     this.loginService.login(this.loginRequest).subscribe( (res: any) => {
@@ -41,7 +44,7 @@ export class LoginComponent {
         localStorage.setItem('token', res.detail);
         localStorage.setItem('User', JSON.stringify(this.loginRequest));
       }else{
-        alert(res.detail);
+        this.msg.error('用户名或密码错误！');
       }
     });
   }

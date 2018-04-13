@@ -26,6 +26,7 @@ import { AppRoute } from './app.router';
 //Strategy
 import { SelectivePreloadingStrategy } from './shared/routerControl/selective-preloading-strategy';
 import { EmitService } from 'app/shared/service/EmitService';
+import { LogoutComponent } from './components/logout/logout.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -40,6 +41,7 @@ export function StartupServiceFactory(startupService: StartupService): Function 
     declarations: [
         AppComponent,
         LoginComponent,
+        LogoutComponent,
 ],
     imports: [
         HttpModule,

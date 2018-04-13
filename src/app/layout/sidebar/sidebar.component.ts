@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
 import { SettingsService } from '@core/services/settings.service';
+import { LoginService } from '../../pages/service/login.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class SidebarComponent implements OnInit{
     public user: any;
 
-    constructor(public settings: SettingsService, public msgSrv: NzMessageService, public router: Router) {
+    constructor(public settings: SettingsService, public msgSrv: NzMessageService, public router: Router, private loginService: LoginService) {
     }
 
     ngOnInit(){
@@ -22,7 +23,6 @@ export class SidebarComponent implements OnInit{
     }
 
     logout(){
-      localStorage.removeItem('token');
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/logout');
     }
 }

@@ -58,20 +58,18 @@ app.get('/employee/sa/list', function(req, res){
     "Errcode": 100,
     "List": [
       {
-        "EmployeeName": "ZhangLin",
-        "NickName": "ZL",
-        "Phone": "15850676563",
+        "UserAccount": "ZLin",
+        "UserName": "Zhang Lin",
+        "Password": "15850676563",
         "Role": 0,
-        "Lock": false,
-        "Superior": "boss"
+        "Lock": false
       },
       {
-        "EmployeeName": "ZhangLin2",
-        "NickName": "ZL",
-        "Phone": "15850676563",
+        "UserAccount": "WLin",
+        "UserName": "Wu Lin",
+        "Password": "15850676563",
         "Role": 0,
-        "Lock": false,
-        "Superior": "boss"
+        "Lock": false
       }
     ],
     "Total": 2

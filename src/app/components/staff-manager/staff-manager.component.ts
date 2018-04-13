@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { StaffManagerService } from './staff-manager.service';
+import { DataAnalysisService } from '../data-analysis/data-analysis.service';
 import { NzModalService } from 'ng-zorro-antd';
 @Component({
   selector: 'app-staff-manager',
   templateUrl: './staff-manager.component.html',
   styleUrls: ['./staff-manager.component.scss'],
-  providers: [StaffManagerService]
+  providers: [StaffManagerService, DataAnalysisService]
 })
 export class StaffManagerComponent implements OnInit {
 
@@ -15,40 +16,43 @@ export class StaffManagerComponent implements OnInit {
     public timesData:any;
     public passwordStyle:boolean;
     public isVisible:boolean;
+    public isModifiedModal:boolean;
+    public isNewModal:boolean;
     public passwordShow:boolean;
+    public AddUserAccount:string;
     public AddUserName:string;
-    public AddNickName:string;
     public AddPassWord:string;
 
+    public ModUserAccount:string;
+    public ModUserName:string;
+    public ModPassword:string;
+
     public role:number;
+    public loadingData: boolean;
 
 
   constructor(private staffManagerService: StaffManagerService,
-              private confirmServ: NzModalService) {
-        this.table01Data=[{
-            "UserName": '',
-            "NickName": '',
-            "ObdMacAddr":'',
-            "HomeAddr":'',
-            "CompanyAddr":'',
-            "SchoolAddr":'',
-            "ActivateTime":'',
-            "ActivateFlag":false,
-            "DetectTimes" :0,
-            "GoldCoins" :'',
-            "Locked" :false,
-            "Role" :0
-        }];
+              private confirmServ: NzModalService, private dataAnalysisService: DataAnalysisService) {
+        // this.table01Data=[{
+        //     "UserAccount": '',
+        //     "UserName": '',
+        //     "Password": '',
+        //     "Locked": true,
+        //     "Role": 0
+        // }];
+        this.table01Data = [];
         this.timesData=[];
         this.passwordStyle=false;
         this.isVisible=false;
+        this.isNewModal=false;
+        this.isModifiedModal = false;
         this.passwordShow=false;
         this.years=[];
+        this.AddUserAccount='';
         this.AddUserName='';
-        this.AddNickName='';
         this.AddPassWord='';
         this.role=1;
-
+        
         this.selectedYear= {
             value:'2017',
             label:'2017年',
@@ -56,44 +60,30 @@ export class StaffManagerComponent implements OnInit {
   }
 
   ngOnInit() {
-      for (let i = 0; i < 30; i++) {
-          this.table01Data.push({
-              "UserName": '18133446655',
-              "NickName": 'test',
-              "ObdMacAddr":'dizhidizh地址',
-              "HomeAddr":'dizhidizh地址',
-              "CompanyAddr":'dizhidizh地址',
-              "SchoolAddr":'dizhidizh地址',
-              "ActivateTime":'2017年09月01号 10:30am',
-              "ActivateFlag":true,
-              "DetectTimes" :45,
-              "GoldCoins" :'',
-              "Locked" :true,
-              "Role" :0
-          });
-      }
+    this.loadingData = true;
+    
+    this.dataAnalysisService.getSalist({itemNumber:-1}).subscribe(res => {
 
-      for (let i = 0; i < 20; i++) {
-          this.timesData.push({
-              NickName   : `小赵`,
-              DetectTimes    : 56+i,
-          });
-      }
+        let list = res.List;
+        if(list){
+            list.forEach(element => {
+                this.table01Data.push({
+                    "UserAccount": element.UserAccount,
+                    "UserName": element.UserName,
+                    "Password": element.Password,
+                    "Locked": element.Lock,
+                    "Role": 0
+                });
+                // this.table01Data.push(element);
+            });
+        }
 
-      this.years=[
-          {
-              value:'2017',
-              label:'2017年',
-          }, {
-              value:'season',
-              label:'近一个季度',
-          }, {
-              value:'month',
-              label:'近一个月',
-          }
-      ]
+        this.loadingData = false;
+    }, error => {
+        console.log('获取SA列表失败！');
+    });
 
-      console.log(this.table01Data)
+       console.log(this.table01Data)
 
   }
   /*修改列表中密码显示形式*/
@@ -104,6 +94,12 @@ export class StaffManagerComponent implements OnInit {
   /*修改弹框中密码显示形式*/
   changePasswordShow(){
       this.passwordShow=!this.passwordShow;
+  }
+
+  addUser(){
+      this.isModifiedModal = false;
+      this.isNewModal = true;
+      this.isVisible = true;
   }
 
   /*是否删除用户*/
@@ -119,18 +115,34 @@ export class StaffManagerComponent implements OnInit {
       });
   }
 
+  modifyAccount(data){
+      this.isVisible = true;
+      this.isNewModal =false;
+      this.ModUserAccount = data.UserAccount;
+      this.ModUserName = data.UserName;
+        console.log(this.ModUserAccount);
+        console.log(this.ModUserName);
+
+      this.isModifiedModal = true;
+      console.log(this.isModifiedModal);
+  }
+
   /*关闭弹框*/
   handleCancel(e){
       this.isVisible=false;
-  }
+      this.isModifiedModal = false;
+      this.isNewModal =false;
+}
 
   /*确认保存新增用户*/
   addSave(e){
         this.isVisible=false;
+        this.isModifiedModal = false;
+        this.isNewModal = false;
 
         /*提交添加用户*/
         this.AddUserName='';
-        this.AddNickName='';
+        this.AddUserAccount='';
         this.AddPassWord='';
   }
 

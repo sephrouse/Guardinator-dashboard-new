@@ -7,7 +7,7 @@
         <div nz-col [nzSpan]="24" class="pie-card">
           <nz-card>
               <ng-template #title>
-                <span class="chart-title">检测评分分析 &nbsp;|&nbsp; {{curStaff}}-{{curCar}}</span>
+                <span class="chart-title">检测评分分析 &nbsp;|&nbsp; {{curStaff}}<!---{{curCar}}--></span>
               </ng-template>
               <ng-template #body>
                   <div nz-row class="pie-fit-width">
@@ -44,7 +44,7 @@
         <div nz-col [nzSpan]="24">
           <nz-card class="table-result-card">
             <ng-template #title>
-                <span class="chart-title">检测结果查询 &nbsp;|&nbsp; {{curStaff}}-{{curCar}}</span>
+                <span class="chart-title">检测结果查询 &nbsp;|&nbsp; {{curStaff}}<!---{{curCar}}--></span>
                 <!-- <span class="anticon anticon-export export-btn" (click)="exportExcel()"></span> -->
             </ng-template>
             <ng-template #body>
@@ -65,6 +65,7 @@
                       </th>
                       <th nz-th>
                         <span>行驶公里数(km)</span>
+                        <nz-table-sort [(nzValue)]="km" (nzValueChange)="sort($event)"></nz-table-sort>
                       </th>
                       <th nz-th>
                         <span>上次到店时间</span>

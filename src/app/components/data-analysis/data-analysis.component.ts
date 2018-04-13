@@ -22,6 +22,8 @@ export class DataAnalysisComponent implements OnInit {
   public curCar: any;
   public curStaff: any;
 
+  km: null;
+
   @ViewChild(NzDatePickerComponent) datePicker: NzDatePickerComponent;
 
   constructor(private dataAnalysisService: DataAnalysisService,  private emitService: EmitService, private el: ElementRef) { }
@@ -52,59 +54,59 @@ export class DataAnalysisComponent implements OnInit {
     this.detectResults = [
       {
         id:1,
-        license: '沪X XXX',
+        license: '沪A 33333',
         code: 'xxxxxxx',
-        km: '5000',
+        km: 2300,
         time: '2017.12.01',
         birth: '2015.06.01',
         fault: 'p00...',
-        Engine: '95',
+        Engine: '90',
         Battery: '83',
-        Coolant: '22',
+        Coolant: '32',
         Carbon: '54',
         Oil: '66'
       },
       {
         id:2,
-        license: '沪X XXX',
+        license: '沪B 11111',
         code: 'xxxxxxx',
-        km: '5000',
+        km: 8020,
         time: '2017.12.01',
         birth: '2015.06.01',
         fault: 'p00...',
-        Engine: '95',
-        Battery: '83',
-        Coolant: '22',
-        Carbon: '54',
-        Oil: '66'
+        Engine: '85',
+        Battery: '93',
+        Coolant: '62',
+        Carbon: '94',
+        Oil: '54'
       },
       {
         id:3,
-        license: '沪X XXX',
+        license: '沪C AAAAA',
         code: 'xxxxxxx',
-        km: '5000',
+        km: 5700,
         time: '2017.12.01',
         birth: '2015.06.01',
         fault: 'p00...',
-        Engine: '95',
-        Battery: '83',
-        Coolant: '22',
-        Carbon: '54',
-        Oil: '66'
+        Engine: '35',
+        Battery: '43',
+        Coolant: '12',
+        Carbon: '14',
+        Oil: '36'
       },
       {
         id:4,
-        license: '沪X XXX',
+        license: '沪D EE558',
         code: 'xxxxxxx',
-        km: '5000',
+        km: 12000,
         time: '2017.12.01',
         birth: '2015.06.01',
         fault: 'p00...',
-        Engine: '95',
-        Battery: '83',
-        Coolant: '22',
-        Carbon: '54',
-        Oil: '66'
+        Engine: '99',
+        Battery: '89',
+        Coolant: '82',
+        Carbon: '94',
+        Oil: '96'
       },
     ]
     let _that = this;
@@ -117,6 +119,20 @@ export class DataAnalysisComponent implements OnInit {
         element.editKMFlag = false;
       });
     })
+  }
+
+  sort(value) {
+    this.km = value;
+
+    this.detectResults = [ ...this.detectResults.sort((a, b) => {
+      if(a['km'] > b['km']) {
+        return (this.km === 'ascend') ? 1 : -1;
+      }else if(a['km'] < b['km']) {
+        return (this.km === 'ascend') ? -1 : 1;
+      }else{
+        return 0;
+      }
+    })];
   }
 
   //设置饼图1
@@ -239,7 +255,7 @@ export class DataAnalysisComponent implements OnInit {
     ]
     this.pie3 = {
       title : {
-        text: '冷却系统',
+        text: '冷却散热',
         textStyle: {
           color: '#000',
           fontSize: 12,
@@ -294,7 +310,7 @@ export class DataAnalysisComponent implements OnInit {
     ]
     this.pie4 = {
       title : {
-        text: '积碳',
+        text: '进气系统',
         textStyle: {
           color: '#000',
           fontSize: 12,
@@ -349,7 +365,7 @@ export class DataAnalysisComponent implements OnInit {
     ]
     this.pie5 = {
       title : {
-        text: '机油',
+        text: '机油性能',
         textStyle: {
           color: '#000',
           fontSize: 12,

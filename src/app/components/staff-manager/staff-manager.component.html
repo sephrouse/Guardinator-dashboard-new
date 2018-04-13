@@ -1,143 +1,128 @@
 <div class="app flex-row align-items-center">
-  <div class="app-body">
+    <div class="app-body">
 
-    <!-- Main content -->
-    <main class="main">
-        <div class="table01">
-            <div class="t1title">
-                <span class="title" *ngIf="role==0">员工账户管理</span>
-                <span class="title" *ngIf="role==1">车主信息管理</span>
-                <button  (click)="isVisible=true" nz-button [nzType]="'primary'">
-                   <span>添加人员</span>
-                    <i class="anticon anticon-plus"></i>
-                </button>
+        <!-- Main content -->
+        <main class="main">
+            <div class="table01">
+                <div class="t1title">
+                    <span class="title">员工账户管理</span>
+                    <button (click)="addUser()" nz-button [nzType]="'primary'">
+                        <span>添加员工</span>
+                        <i class="anticon anticon-plus"></i>
+                    </button>
+
+                </div>
+                <div class="t1">
+                    <nz-table #nzTable1 [nzAjaxData]="table01Data" [nzIsPagination]="false" [nzLoading]="loadingData">
+                        <thead nz-thead>
+                            <tr>
+                                <th nz-th>
+                                    <span>员工账户名</span>
+                                </th>
+                                <th nz-th>
+                                    <span>员工姓名</span>
+                                </th>
+                                <th nz-th>
+                                    <span>密码&nbsp;&nbsp;
+                                        <span (click)="changePassword()" class="eye" [ngClass]="{closeEye:passwordStyle,openEye:!passwordStyle}"></span>
+                                    </span>
+                                </th>
+                                <th nz-th>
+                                    <span>修改操作</span>
+                                </th>
+                                <th nz-th>
+                                    <span>禁用账户</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody nz-tbody>
+                            <tr nz-tbody-tr *ngFor="let data of nzTable1.data">
+                                <td nz-td>{{data.UserAccount}}</td>
+                                <td nz-td>{{data.UserName}}</td>
+                                <td nz-td>{{passwordStyle?data.Password:'******'}}</td>
+                                <td nz-td>
+                                    <span class="modifyIcon" (click)="modifyAccount(data)"></span>
+                                </td>
+                                <td nz-td>
+                                    {{data.Locked?'已禁用':'已启用'}}&nbsp;&nbsp;
+                                    <span [ngClass]="{forbiddenIcon:data.Locked,forbiddenIcon01:!data.Locked}" class="forbiddenIcon">&nbsp;</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </nz-table>
+
+                </div>
 
             </div>
-           <div class="t1">
-               <nz-table   #nzTable1
-                           [nzDataSource]="table01Data"
-                           [nzPageSize]="12"
-                           [nzSize]="'default'"
-               >
-                   <thead nz-thead>
-                   <tr>
-                       <th nz-th ><span>{{role==0?'用户名':'姓名'}}</span></th>
-                       <th nz-th ><span>{{role==0?'姓名':'车主用户名'}}</span></th>
-                       <th nz-th >
-                           <span *ngIf="role==0">密码&nbsp;&nbsp;
-                               <span (click)="changePassword()"  class="eye"  [ngClass]="{closeEye:passwordStyle,openEye:!passwordStyle}"></span>
-                           </span>
-                           <span  *ngIf="role==1">电话</span>
 
-                       </th>
-                       <th nz-th ><span>{{role==0?'禁用账户':'开户日期'}}</span></th>
-                       <th nz-th ><span>删除账户</span></th>
-                   </tr>
-                   </thead>
-                   <tbody nz-tbody>
-                   <tr nz-tbody-tr *ngFor="let data of nzTable1.data">
-                       <td nz-td>{{data.NickName}}</td>
-                       <td nz-td>{{data.UserName}}</td>
-                       <td nz-td>{{passwordStyle?data.password:'******'}}</td>
-                       <td nz-td>
-                           {{data.Locked?'已禁用':'已启用'}}&nbsp;&nbsp;
-                        <span  [ngClass]="{forbiddenIcon:data.Locked,forbiddenIcon01:!data.Locked}" class="forbiddenIcon">&nbsp;</span>
-                       </td>
-                       <td nz-td>
-                           <span class="deleteIcon" (click)="deleteAccount(data)"></span>
-                       </td>
-                   </tr>
-                   </tbody>
-               </nz-table>
-
-           </div>
-
-        </div>
-
-        <div>
-            <nz-modal [nzVisible]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel($event)">
-                <ng-template #modalTitle>
-                    <span style="font-size:18px;color:#707070;">{{role==0?'添加员工账户':'添加车主信息'}}</span>
-                </ng-template>
-                <ng-template #modalContent>
-                    <div *ngIf="role==0" class="contentModal">
-                        <p>姓名</p>
-                        <nz-input [(ngModel)]="AddUserName" [nzPlaceHolder]="'请输入姓名'" ></nz-input>
-                        <p>用户名</p>
-                        <nz-input [(ngModel)]="AddNickName" [nzPlaceHolder]="'请输入用户名'" ></nz-input>
-                        <p>密码</p>
-                        <div class="modalPassw">
-                            <span class="eye closeEye"
-                                  [ngClass]="{closeEye:!passwordShow,openEye:passwordShow}"
-                                  (click)="changePasswordShow()"></span>
-                            <nz-input *ngIf="passwordShow" [(ngModel)]="AddPassWord" [nzPlaceHolder]="'请输入密码'" ></nz-input>
-                            <nz-input *ngIf="!passwordShow" [(ngModel)]="AddPassWord" [nzType]="'password'" [nzPlaceHolder]="'请输入密码'" ></nz-input>
+            <div>
+                <nz-modal [nzVisible]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel($event)">
+                    <ng-template #modalTitle>
+                        <span style="font-size:18px;color:#707070;" *ngIf="isNewModal">添加员工账户</span>
+                        <span style="font-size:18px;color:#707070;" *ngIf="isModifiedModal">修改员工账户</span>
+                    </ng-template>
+                    <ng-template #modalContent>
+                        <div class="contentModal">
+                            <p>员工账户名</p>
+                            <nz-input [(ngModel)]="AddUserAccount" [nzPlaceHolder]="'请输入员工账号'" *ngIf="isNewModal"></nz-input>
+                            <nz-input [(ngModel)]="ModUserAccount" *ngIf="isModifiedModal" [nzDisabled]="true"></nz-input>
+                            <p>员工姓名</p>
+                            <nz-input [(ngModel)]="AddUserName" [nzPlaceHolder]="'请输入员工真实姓名'" *ngIf="isNewModal"></nz-input>
+                            <nz-input [(ngModel)]="ModUserName" *ngIf="isModifiedModal"></nz-input>
+                            <p>密码</p>
+                            <div class="modalPassw">
+                                <span class="eye closeEye" [ngClass]="{closeEye:!passwordShow,openEye:passwordShow}" (click)="changePasswordShow()"></span>
+                                <nz-input *ngIf="passwordShow" [(ngModel)]="AddPassWord" [nzPlaceHolder]="'请输入密码'"></nz-input>
+                                <nz-input *ngIf="!passwordShow" [(ngModel)]="AddPassWord" [nzType]="'password'" [nzPlaceHolder]="'请输入密码'"></nz-input>
+                            </div>
                         </div>
-                    </div>
+                    </ng-template>
+                    <ng-template #modalFooter>
+                        <button nz-button [nzType]="'default'" [nzSize]="'large'" (click)="handleCancel($event)">
+                            取消
+                        </button>
+                        <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="addSave($event)" [nzLoading]="isConfirmLoading">
+                            保存
+                        </button>
+                    </ng-template>
+                </nz-modal>
+            </div>
+            <!--<div class="table02">-->
+            <!--<div class="t2title">-->
+            <!--<span class="title">员工检测次数排行</span>&nbsp;&nbsp;-->
+            <!--<span (click)="printOrder()" class="printIcon"></span>-->
+            <!--<nz-select class="t2Select" style="width: 130px; " [(ngModel)]="selectedYear" [nzPlaceHolder]="'选择时间'" nzAllowClear>-->
+            <!--<nz-option-->
+            <!--*ngFor="let option of years"-->
+            <!--[nzLabel]="option.label"-->
+            <!--[nzValue]="option"-->
+            <!--[nzDisabled]="option.disabled">-->
+            <!--</nz-option>-->
+            <!--</nz-select>-->
 
-                    <div *ngIf="role==1"  class="contentModal">
-                        <p>姓名</p>
-                        <nz-input [(ngModel)]="AddUserName" [nzPlaceHolder]="'请输入姓名'" ></nz-input>
-                        <p>车主用户名</p>
-                        <nz-input [(ngModel)]="AddNickName" [nzPlaceHolder]="'请输入用户名'" ></nz-input>
-                         <p>电话</p>
-                        <nz-input [(ngModel)]="AddNickName" [nzPlaceHolder]="'请输入电话'" ></nz-input>
-                         <p>输入验证码</p>
-                        <nz-input [(ngModel)]="AddNickName" [nzPlaceHolder]="'请输入验证码'" ></nz-input>
-                    </div>
-                </ng-template>
-                <ng-template #modalFooter>
-                    <button nz-button [nzType]="'default'" [nzSize]="'large'" (click)="handleCancel($event)">
-                        取消
-                    </button>
-                    <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="addSave($event)" [nzLoading]="isConfirmLoading">
-                        保存
-                    </button>
-                </ng-template>
-            </nz-modal>
-        </div>
-        <!--<div class="table02">-->
-        <!--<div class="t2title">-->
-        <!--<span class="title">员工检测次数排行</span>&nbsp;&nbsp;-->
-        <!--<span (click)="printOrder()" class="printIcon"></span>-->
-        <!--<nz-select class="t2Select" style="width: 130px; " [(ngModel)]="selectedYear" [nzPlaceHolder]="'选择时间'" nzAllowClear>-->
-        <!--<nz-option-->
-        <!--*ngFor="let option of years"-->
-        <!--[nzLabel]="option.label"-->
-        <!--[nzValue]="option"-->
-        <!--[nzDisabled]="option.disabled">-->
-        <!--</nz-option>-->
-        <!--</nz-select>-->
-
-        <!--</div>-->
-        <!--<div class="t2">-->
-        <!--<nz-table #nzTable [nzDataSource]="timesData" [nzPageSize]="15"  [nzSize]="'default'"  >-->
-        <!--<tbody nz-tbody>-->
-        <!--<tr nz-tbody-tr  *ngFor="let data of nzTable.data;let i=index">-->
-        <!--<td nz-td style="width: 50px">-->
-        <!--{{i+1}}-->
-        <!--</td>-->
-        <!--<td nz-td style="width:60px">{{data.NickName}}</td>-->
-        <!--<td nz-td > <nz-progress [ngModel]="data.DetectTimes" [nzStrokeWidth]="5"[nzShowInfo]="false"></nz-progress></td>-->
-        <!--<td nz-td style="width: 50px">{{data.times}}</td>-->
-        <!--</tr>-->
-        <!--</tbody>-->
-        <!--</nz-table>-->
-        <!--</div>-->
-        <!--&lt;!&ndash;<div class="PrintButton" >&ndash;&gt;-->
-        <!--&lt;!&ndash;<button nz-button [nzSize]="'large'" (click)="printOrder()" [nzType]="'primary'">&ndash;&gt;-->
-        <!--&lt;!&ndash;<span >打印</span>&ndash;&gt;-->
-        <!--&lt;!&ndash;</button>&ndash;&gt;-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--</div>-->
+            <!--</div>-->
+            <!--<div class="t2">-->
+            <!--<nz-table #nzTable [nzDataSource]="timesData" [nzPageSize]="15"  [nzSize]="'default'"  >-->
+            <!--<tbody nz-tbody>-->
+            <!--<tr nz-tbody-tr  *ngFor="let data of nzTable.data;let i=index">-->
+            <!--<td nz-td style="width: 50px">-->
+            <!--{{i+1}}-->
+            <!--</td>-->
+            <!--<td nz-td style="width:60px">{{data.NickName}}</td>-->
+            <!--<td nz-td > <nz-progress [ngModel]="data.DetectTimes" [nzStrokeWidth]="5"[nzShowInfo]="false"></nz-progress></td>-->
+            <!--<td nz-td style="width: 50px">{{data.times}}</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+            <!--</nz-table>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;<div class="PrintButton" >&ndash;&gt;-->
+            <!--&lt;!&ndash;<button nz-button [nzSize]="'large'" (click)="printOrder()" [nzType]="'primary'">&ndash;&gt;-->
+            <!--&lt;!&ndash;<span >打印</span>&ndash;&gt;-->
+            <!--&lt;!&ndash;</button>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--</div>-->
 
 
-    </main>
-  </div>
+        </main>
+    </div>
 </div>
-
-
-
-
-
-

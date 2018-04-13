@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, ViewEncapsulation } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd';
 import { FormGroup, FormControl, FormBuilder, Validators} from "@angular/forms";
 
@@ -6,6 +6,7 @@ import { FormGroup, FormControl, FormBuilder, Validators} from "@angular/forms";
   selector: 'report-modal',
   templateUrl: './report-modal.component.html',
   styleUrls: ['./report-modal.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ReportModalComponent implements OnInit {
 

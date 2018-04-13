@@ -68,13 +68,13 @@ export class HeaderComponent implements OnInit{
             let list = res.List;
             if(list){
                 list.forEach(element => {
-                    this.staffSelects.push({value: element.EmployeeName,label: element.EmployeeName})
+                    this.staffSelects.push({value: element.UserName,label: element.UserName})
                 });
                 this.curStaff = this.staffSelects[0].label;
                 localStorage.setItem('dashboard-curStaff',JSON.stringify(this.curStaff));
             }
         }, error => {
-            console.log('获取SA列表失败！')
+            console.log('获取SA列表失败！');
         })
         //获取汽车类型列表
         this.dataAnalysisService.getAllCartype().subscribe(res => {
@@ -92,7 +92,7 @@ export class HeaderComponent implements OnInit{
                 localStorage.setItem('dashboard-curCar',JSON.stringify(this.curCar));
             }
         }, error => {
-            console.log('获取汽车类型列表失败！')
+            console.log('获取汽车类型列表失败！');
         })
         
         this.showTool();
@@ -160,13 +160,18 @@ export class HeaderComponent implements OnInit{
             this.showToolFlag = true;
         }else if(this.router.url == "/content/staff-manager"){
             this.showToolFlag = false;
+        }else if(this.router.url == "/content/vehicleowner-manager"){
+            this.showToolFlag = false;
         }
+
         this.router.events
         .filter(event => event instanceof NavigationEnd)
         .subscribe((res:any) => {
             if(res.url == '/content/data-analysis'){
                 this.showToolFlag = true;
             }else if(res.url == "/content/staff-manager"){
+                this.showToolFlag = false;
+            }else if(res.url == "/content/vehicleowner-manager") {
                 this.showToolFlag = false;
             }
         })

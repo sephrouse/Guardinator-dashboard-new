@@ -1,7 +1,7 @@
 {
     "app": {
         "name": "Honeywell",
-        "description": "Ng-zorro admin panel front-end framework"
+        "description": "Honeywell Guardinator Web Portal"
     },
     "user": {
         "name": "Admin",
@@ -19,9 +19,21 @@
             "icon": "navigation-data",
             "acl": "role-a"
         }, {
+            "text": "车主管理",
+            "translate": "车主管理",
+            "link": "/content/vehicleowner-manager",
+            "icon": "navigation-setting",
+            "acl": "role-a"
+        }, {
             "text": "员工管理",
             "translate": "员工管理",
             "link": "/content/staff-manager",
+            "icon": "navigation-setting",
+            "acl": "role-a"
+        }, {
+            "text": "登出",
+            "translate": "登出",
+            "link": "/logout",
             "icon": "navigation-setting",
             "acl": "role-a"
         }]

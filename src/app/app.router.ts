@@ -3,6 +3,7 @@ import { CanActivateGuard } from './shared/routerControl/can-activate-guard';
 import { SelectivePreloadingStrategy } from './shared/routerControl/selective-preloading-strategy';
 import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './pages/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 const rootRouterConfig: Routes = [
     {
@@ -12,7 +13,11 @@ const rootRouterConfig: Routes = [
     },
     {
         path: 'login',
-        component: LoginComponent,
+        component: LoginComponent
+    },
+    {
+        path: 'logout',
+        component: LogoutComponent
     },
     {
         path: 'content',
@@ -38,6 +43,13 @@ const rootRouterConfig: Routes = [
                 preload: true
               }
             },
+            {
+              path: 'vehicleowner-manager', // 车主管理
+              loadChildren: './components/vehicleowner-manager/vehicleowner-manager.module#VehicleOwnerManagerModule',
+              data: {
+                preload: true
+              }
+            }
           ]
     },
     { path: '**', redirectTo: 'login' }

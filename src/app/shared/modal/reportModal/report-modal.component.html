@@ -7,13 +7,39 @@
     <nz-tabset>
         <nz-tab>
             <ng-template #nzTabHeading>
-                检测详情
+                发动机评分详情
             </ng-template>
             <div class="content-box">
-                <div class="content-title">一级标题</div>
+                <!-- <div class="content-title">一级标题</div>
                 <div class="content-txt">正文缺省...正文缺省...正文缺省...正文缺省...正文缺省...</div>
                 <div class="content-title">一级标题</div>
-                <div class="content-txt">正文缺省...正文缺省...正文缺省...正文缺省...正文缺省...</div>
+                <div class="content-txt">正文缺省...正文缺省...正文缺省...正文缺省...正文缺省...</div> -->
+                <nz-table [nzSize]="'default'" #nzTplTable [nzDataSource]="tplData">
+                    <thead nz-thead>
+                        <tr>
+                            <th nz-th>
+                                <span>气缸</span>
+                            </th>
+                            <th nz-th>
+                                <span>评分</span>
+                            </th>
+                            <th nz-th>
+                                <span>历史失火</span>
+                            </th>
+                            <th nz-th>
+                                <span>当前失火</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody nz-tbody>
+                        <tr nz-tbody-tr *ngFor="let data of nzTplTable.data">
+                            <td nz-td>{{data.gang}}</td>
+                            <td nz-td>{{data.score}}</td>
+                            <td nz-td>{{data.hmisfire}} 次</td>
+                            <td nz-td>{{data.cmisfire}} 次</td>
+                        </tr>
+                    </tbody>
+                </nz-table>
             </div>
         </nz-tab>
         <nz-tab>
@@ -21,10 +47,86 @@
                 数据流
             </ng-template>
             <div class="content-box">
-                <div class="content-title">一级标题</div>
-                <div class="content-txt">正文缺省...正文缺省...正文缺省...正文缺省...正文缺省...</div>
-                <div class="content-title">一级标题</div>
-                <div class="content-txt">正文缺省...正文缺省...正文缺省...正文缺省...正文缺省...</div>
+                <div class="content-title">车辆信息</div>
+                <div class="content-txt">
+                    <table>
+                        <tr>
+                            <td>OBD协议： EOBD</td>
+                            <td>汽车VIN码： LVSHFAAL2BN165119</td>
+                        </tr>
+                        <tr>
+                            <td>汽车监控信息2： 不支持或者无数据</td>
+                            <td>车辆通信协议： A6</td>
+                        </tr>
+                        <tr>
+                            <td>车辆通信模式： AUTO, IOS 15765-4(CAN 11/500)</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="content-title">电源控制</div>
+                <div class="content-txt">
+                    <table>
+                        <tr>
+                            <td>控制模块电压： 14.20V </td>
+                            <td>电瓶模块电压： 13.61V</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="content-title">温度控制</div>
+                <div class="content-txt">
+                    <table>
+                        <tr>
+                            <td>CACT温度： 不支持或者无数据</td>
+                            <td>EGR温度： 不支持或者无数据</td>
+                        </tr>
+                        <tr>
+                            <td>三元催化温度-1： 329度</td>
+                            <td>冷却液温度： 46度</td>
+                        </tr>
+                        <tr>
+                            <td>进气温度： 15度</td>
+                            <td>环境温度： 20度</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="content-title">压力控制</div>
+                <div class="content-txt">
+                    <table>
+                        <tr>
+                            <td>大气压：101Kpa </td>
+                            <td>进气歧管压力：34Kpa</td>
+                        </tr>
+                    </table>
+                </div>
+
+
+                <div class="content-title">动力控制</div>
+                <div class="content-txt">
+                    <table>
+                        <tr>
+                            <td>加速踏板位置D：31.4%</td>
+                            <td>加速踏板位置E：20.8%</td>
+                        </tr>
+                        <tr>
+                            <td>相对节气门位置：4.3%</td>
+                            <td>短期燃油矫正-1：-7.81%</td>
+                        </tr>
+                    </table>
+                </div>
+<!-- 
+
+                <div class="content-title">故障监控</div>
+                <div class="content-txt">当前故障码: 无</div>
+                <div class="content-txt">故障码清除后行驶里程：7790KM</div>
+                <div class="content-title">发动机监控</div>
+                <div class="content-txt">发动机绝对负载：23.9%</div>
+                <div class="content-txt">发动机负载：29%</div>
+                <div class="content-title">氧传感器</div>
+                <div class="content-txt">WR氧传感B1S1:0.996RATIO&&-0.01mA</div> -->
             </div>
         </nz-tab>
         <nz-tab>
@@ -32,7 +134,17 @@
                 检测评分
             </ng-template>
             <div class="content-box">
+
                 <div class="car-img"></div>
+                <div class="content-result">
+                        <p>
+                                1. 发动机运转性能优秀<br>
+                                2. 您的“心脏”热循环及冷却性能良好<br>
+                                3. 中度积碳并有增大趋势可能，建议15天内或1000公里后进行复测，注意驾驶习惯和油品，如果有增大趋势则建议考虑保养，更换相关油液，或采取相关积碳清除措施<br>
+                                4. 机油性能较差并处于衰减趋势，建议更换机油后再开300公里后检测<br>
+                                5. 电瓶总体性能良好<br>
+                                            </p>
+                </div>
                 <div class="progress-wrapper">
                     <div class="engine {{progress.engine | progresscolor}}">
                         <nz-progress [nzWidth]="80" [ngModel]="progress.engine" [nzType]="'circle'" [nzFormat]="engineformat"></nz-progress>
@@ -58,11 +170,33 @@
             </ng-template>
             <div class="content-box">
                 <div class="content-title">当前故障码</div>
-                <div class="content-txt">正文缺省...正文缺省...正文缺省...正文缺省...正文缺省...</div>
+                <div class="content-txt">
+                    <table class="content-tbl">
+                        <tr>
+                            <td class="content-td1">P0403:</td>
+                            <td class="content-td2">所有汽车制造商：废气再循环阀A控制电路 | 排放控制；Exhaust Gas Recirculation A Control Circuit；<br>废气再循环(EGR)系统的作用是在发动机高负荷运转时将少量的废气导入进气歧管。这些废气的存在降低了燃烧室的温度和压力，从而减少了氧化氮污染物的排放。<br>对于拥有电子废气再循环系统(EEGR)的车辆，电子控制单元(ECU)会持续监测EEGR的线圈，电路。如果发现诸如开路，短路的情况，该故障码会出现。<br>此时整个EEGR系统会被禁用，其他的对EEGR的监测也会被终止。故障原因包括EEGR执行器，或其电路，接头故障，EEGR卷扬马达，电子控制模块等。</td>
+                        </tr>
+                    </table>
+                </div>
+
                 <div class="content-title">未解决故障码</div>
-                <div class="content-txt">正文缺省...正文缺省...正文缺省...正文缺省...正文缺省...</div>
+                <div class="content-txt">
+                    <table class="content-tbl">
+                        <tr>
+                            <td class="content-td1">P0793:</td>
+                            <td class="content-td2">中间轴转速传感器A电路没有信号</td>
+                        </tr>
+                    </table>
+                </div>
                 <div class="content-title">永久故障码</div>
-                <div class="content-txt">正文缺省...正文缺省...正文缺省...正文缺省...正文缺省...</div>
+                <div class="content-txt">
+                    <table class="content-tbl">
+                        <tr>
+                            <td class="content-td1">P077B:</td>
+                            <td class="content-td2">输出速度传感器电路-方向错误</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </nz-tab>
     </nz-tabset>

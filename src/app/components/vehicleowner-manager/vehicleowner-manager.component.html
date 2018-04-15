@@ -21,7 +21,15 @@
                >
                    <thead nz-thead>
                    <tr>
-                       <th nz-th ><span>车主姓名</span></th>
+                       <th nz-th ><span>车主姓名</span>
+                            <nz-dropdown [nzTrigger]="'click'" [nzClickHide]="false">
+                                <i class="anticon anticon-search ant-table-filter-icon" nz-dropdown></i>
+                                <div nz-dropdown-custom class="custom-filter-dropdown">
+                                    <nz-input [nzPlaceHolder]="'查找姓名'" [(ngModel)]="searchValue"></nz-input>
+                                    <button nz-button [nzType]="'primary'" (click)="searchName()">查找</button>
+                                </div>
+                            </nz-dropdown>
+                        </th>
                        <th nz-th ><span>车主账号</span></th>
                        <th nz-th ><span>电话</span></th>
                        <th nz-th ><span>修改操作</span></th>

@@ -32,13 +32,15 @@ export class DataAnalysisService {
   }
 
   //获取车型评分分析
-  public getScoreAnalysis(json: any): Observable<any>{
+  public getScoreAnalysis(staffName: string): Observable<any>{
     let url = "";
-    if(json.EmpName){
-      url = Const.BACKEND_API_ROOT_URL + '/score/ratio?CarBrand='+json.CarBrand + '&CarType=' + json.CarType + '&EmpName=' + json.EmpName; 
-    }else{
-      url = Const.BACKEND_API_ROOT_URL + '/score/ratio?CarBrand='+json.CarBrand + '&CarType=' + json.CarType; 
-    }
+
+    url = Const.BACKEND_API_ROOT_URL + '/score/ratio/' + staffName;
+    // if(json.EmpName){
+    //   url = Const.BACKEND_API_ROOT_URL + '/score/ratio?CarBrand='+json.CarBrand + '&CarType=' + json.CarType + '&EmpName=' + json.EmpName; 
+    // }else{
+    //   url = Const.BACKEND_API_ROOT_URL + '/score/ratio?CarBrand='+json.CarBrand + '&CarType=' + json.CarType; 
+    // }
     return this.http.get(url)
       .map((res: Response) => {
         return res.json();

@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild} from '@angular/core';
 import { DataAnalysisService } from './data-analysis.service';
-import * as ExportJsonExcel from 'js-export-excel';
+// import * as ExportJsonExcel from 'js-export-excel';
 import { EmitService } from 'app/shared/service/EmitService';
 import { NzDatePickerComponent } from 'ng-zorro-antd';
 
@@ -36,10 +36,21 @@ export class DataAnalysisComponent implements OnInit {
         this.curCar = res.data;
       }else if(res.type == 'staff'){
         this.curStaff = res.data;
+
+        this.dataAnalysisService.getScoreAnalysis(this.curStaff).subscribe((res: any) => {
+          let data = res.Data;
+          if(data){
+            this.setPie1(data.Engine);
+            this.setPie2(data.Battery);
+            this.setPie3(data.Coolant);
+            this.setPie4(data.Carbon);
+            this.setPie5(data.Oil);
+          }
+        });
       }
     })
     //获取检测评分分析
-    this.dataAnalysisService.getScoreAnalysis({}).subscribe((res: any) => {
+    this.dataAnalysisService.getScoreAnalysis(this.curStaff).subscribe((res: any) => {
       let data = res.Data;
       if(data){
         this.setPie1(data.Engine);
@@ -48,17 +59,17 @@ export class DataAnalysisComponent implements OnInit {
         this.setPie4(data.Carbon);
         this.setPie5(data.Oil);
       }
-    })
+    });
 
     //检测结果
     this.detectResults = [
       {
         id:1,
-        license: '沪A 33333',
-        code: 'xxxxxxx',
+        license: '沪B XXX26',
+        code: 'LFV2A21J97302662',
         km: 2300,
-        time: '2017.12.01',
-        birth: '2015.06.01',
+        time: '2016.03.21',
+        birth: '2013.06.21',
         fault: 'p00...',
         Engine: '90',
         Battery: '83',
@@ -68,11 +79,11 @@ export class DataAnalysisComponent implements OnInit {
       },
       {
         id:2,
-        license: '沪B 11111',
-        code: 'xxxxxxx',
+        license: '沪A XXX32',
+        code: 'LGWEF7A77HH276892',
         km: 8020,
-        time: '2017.12.01',
-        birth: '2015.06.01',
+        time: '2017.07.07',
+        birth: '2015.02.14',
         fault: 'p00...',
         Engine: '85',
         Battery: '93',
@@ -82,11 +93,11 @@ export class DataAnalysisComponent implements OnInit {
       },
       {
         id:3,
-        license: '沪C AAAAA',
-        code: 'xxxxxxx',
+        license: '沪B XXXL9',
+        code: 'LVSHCAME7CF299891',
         km: 5700,
-        time: '2017.12.01',
-        birth: '2015.06.01',
+        time: '2017.10.03',
+        birth: '2012.10.08',
         fault: 'p00...',
         Engine: '35',
         Battery: '43',
@@ -96,11 +107,11 @@ export class DataAnalysisComponent implements OnInit {
       },
       {
         id:4,
-        license: '沪D EE558',
-        code: 'xxxxxxx',
+        license: '沪C XXXX1',
+        code: 'WBAWX3106H0B76392',
         km: 12000,
-        time: '2017.12.01',
-        birth: '2015.06.01',
+        time: '2016.11.15',
+        birth: '2015.05.09',
         fault: 'p00...',
         Engine: '99',
         Battery: '89',
@@ -412,19 +423,19 @@ export class DataAnalysisComponent implements OnInit {
 
   //导出成excel
   exportExcel(){
-    let option={
-      fileName: '检测结果',
-      datas:[
-        {
-          sheetData:this.detectResults,
-          sheetName:'sheet',
-          sheetHeader:['车型','检测时间','车牌']
-        }
-      ]
-    };
+    // let option={
+    //   fileName: '检测结果',
+    //   datas:[
+    //     {
+    //       sheetData:this.detectResults,
+    //       sheetName:'sheet',
+    //       sheetHeader:['车型','检测时间','车牌']
+    //     }
+    //   ]
+    // };
 
-    let toExcel = new ExportJsonExcel(option);
-    toExcel.saveExcel();
+    // let toExcel = new ExportJsonExcel(option);
+    // toExcel.saveExcel();
    
   }
   

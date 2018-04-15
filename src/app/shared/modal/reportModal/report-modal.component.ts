@@ -22,7 +22,30 @@ export class ReportModalComponent implements OnInit {
     cool: 79,
     carbon: 49,
     oil: 29
-  }
+  };
+
+  public tplData = [{
+    "gang": "缸1",
+    "score": 97,
+    "hmisfire": 1,
+    "cmisfire": 0,
+  }, {
+    "gang": "缸2",
+    "score": 100,
+    "hmisfire": 0,
+    "cmisfire": 0,
+  }, {
+    "gang": "缸3",
+    "score": 100,
+    "hmisfire": 0,
+    "cmisfire": 0,
+  }, {
+    "gang": "缸4",
+    "score": 100,
+    "hmisfire": 0,
+    "cmisfire": 0,
+  }, ];
+
   @Input()
   public data: any;
 

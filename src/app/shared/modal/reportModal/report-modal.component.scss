@@ -38,9 +38,26 @@
         padding-left: 20px;
     }
     .content-txt{
-        height: 48px;
-        line-height: 48px;
+
         padding-left: 50px;
+    }
+    .content-txt table{
+        width: 90%;
+    }
+    .content-txt .content-tbl{
+        width: 90%;
+    }
+    .content-txt .content-tbl tr .content-td1{
+        width: 10%;
+    }
+    .content-txt .content-tbl tr .content-td2{
+        width: 90%;
+    }
+    .content-txt table tr td {
+        width: 50%;
+    }
+    .content-result{
+        padding-top: 130px;
     }
     .car-img{
         background: url(/assets/img/car-img.png);

@@ -130,7 +130,7 @@ export class HeaderComponent implements OnInit{
     }
 
     changeTheme(theme: ThemeType) {
-        this.themeServ.setTheme(theme);
+        //this.themeServ.setTheme(theme);
         this.settings.setLayout('theme', theme);
     }
 

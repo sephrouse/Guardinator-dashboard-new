@@ -30,8 +30,8 @@
                       <div class="pie-des">
                         <div class="txt">占比=</div>
                         <div class="txt">
-                          <div class="top">获得该分数的次数</div>
-                          <div class="bottom">检测次数</div>
+                          <div class="top">获得该分数的车辆</div>
+                          <div class="bottom">总车辆</div>
                         </div>
                       </div>
                     </div>
@@ -117,7 +117,7 @@
                       </td>
                       <td nz-td>
                         <div>
-                            <nz-datepicker style="width:10px;visibility:hidden;" [(ngModel)]="data.time" [nzPlaceHolder]="'选择日期'" [nzFormat]="'YYYY.MM.DD'"></nz-datepicker>
+                            <nz-datepicker style="width:10px;visibility:hidden;" [(ngModel)]="data.time" [nzPlaceHolder]="'选择日期'" [nzFormat]="'YYYY.MM.DD'" (ngModelChange)="data.time=$event"></nz-datepicker>
                             {{data.time|selfdate:'YYYY.MM.DD'}}
                             <i class="calendar-icon" (click)="openPicker()"></i>
                         </div>

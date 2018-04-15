@@ -25,6 +25,8 @@ export class VehicleOwnerManagerComponent implements OnInit {
     public ModUserAccount:string;
     public ModUserName:string;
     public ModUserPhone:string;
+    public copyData:any;
+    public searchValue:string;
 
   constructor(private staffManagerService: VehicleOwnerManagerService,
               private confirmServ: NzModalService) {
@@ -174,6 +176,8 @@ export class VehicleOwnerManagerComponent implements OnInit {
         UserPhone: '13820002166'
       }];
 
+      this.copyData = this.table01Data;
+
       for (let i = 0; i < 20; i++) {
           this.timesData.push({
               NickName   : `小赵`,
@@ -268,6 +272,14 @@ export class VehicleOwnerManagerComponent implements OnInit {
         mywindow.print();
         mywindow.close();
 
+}
+
+searchName() {
+  const filterFunc = (user) => {
+    return user.UserName.indexOf(this.searchValue) !== -1;
+  };
+
+  this.table01Data = [...this.copyData.filter(user => filterFunc(user))];
 }
 
 

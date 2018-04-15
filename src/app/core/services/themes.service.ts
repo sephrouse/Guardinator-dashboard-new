@@ -26,7 +26,7 @@ export class ThemesService {
         setTimeout(() => {
             this.createStyle();
             // this.setTheme(settings.layout.theme);
-            this.setTheme('K');
+            this.setThemeTempSXN('K');
         }, 0);
     }
 
@@ -38,19 +38,37 @@ export class ThemesService {
         head.appendChild(this.styleTag);
     }
 
-    setTheme(name: ThemeType) {
+    // setThemeTempSXN(name: ThemeType) {
+    //     if (name === this.defaultTheme) {
+    //         return;
+    //     }
+    //     const bodyEl = this.doc.querySelector('body');
+    //     const removeArr = [];
+    //     for (let i = 0; i < bodyEl.classList.length; i++) {
+    //         if (bodyEl.classList[i].startsWith('theme-')) {
+    //             removeArr.push(bodyEl.classList[i]);
+    //         }
+    //     }
+    //     bodyEl.classList.remove(...removeArr);
+    //     bodyEl.classList.add(`theme-${name.toLowerCase()}`);
+    //     const idx = name.charCodeAt(0) - 65;
+    //     this.injectStylesheet([themeA, themeB, themeC, themeD, themeE, themeF, themeG, themeH, themeI, themeJ, themeK][idx]);
+    //     this.defaultTheme = name;
+    // }
+
+    setThemeTempSXN(name: ThemeType) {
         if (name === this.defaultTheme) {
             return;
         }
         const bodyEl = this.doc.querySelector('body');
-        const removeArr = [];
-        for (let i = 0; i < bodyEl.classList.length; i++) {
-            if (bodyEl.classList[i].startsWith('theme-')) {
-                removeArr.push(bodyEl.classList[i]);
-            }
-        }
-        bodyEl.classList.remove(...removeArr);
-        bodyEl.classList.add(`theme-${name.toLowerCase()}`);
+        // const removeArr = [];
+        // for (let i = 0; i < bodyEl.classList.length; i++) {
+        //     if (bodyEl.classList[i].startsWith('theme-')) {
+        //         removeArr.push(bodyEl.classList[i]);
+        //     }
+        // }
+        // bodyEl.classList.remove(...removeArr);
+        bodyEl.classList.add(`theme-k`);
         const idx = name.charCodeAt(0) - 65;
         this.injectStylesheet([themeA, themeB, themeC, themeD, themeE, themeF, themeG, themeH, themeI, themeJ, themeK][idx]);
         this.defaultTheme = name;
